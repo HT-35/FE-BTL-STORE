@@ -1320,7 +1320,7 @@ blockquote.text-white cite span {
   letter-spacing: -0.01em;
   margin-right: 1.5rem;
 }
-.header-intro-clearance .header-bottom .container::before {
+/*.header-intro-clearance .header-bottom .container::before {
   position: absolute;
   content: "";
   left: 28.5rem;
@@ -1329,7 +1329,7 @@ blockquote.text-white cite span {
   top: 50%;
   background-color: #ccc;
   transform: translateY(-50%);
-}
+}*/
 .header-intro-clearance .header-bottom .container::after {
   position: absolute;
 
