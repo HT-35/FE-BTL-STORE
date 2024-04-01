@@ -69,29 +69,29 @@
                         <div class="header-right">
 
 
-                            <div class="dropdown cart-dropdown">
-                                <a href="cart.html" class="dropdown-toggle">
+                            <div class="dropdown compare-dropdown">
+                                <a href="./cart.html" class="dropdown-toggle" role="button">
                                     <div class="icon">
                                         <i class="icon-shopping-cart"></i>
-                                        <span class="cart-count">2</span>
                                     </div>
                                     <p style="color: #ffffff;">CART</p>
                                 </a>
 
-                            </div><!-- End .cart-dropdown -->
+                            </div>
 
                             <div class="dropdown compare-dropdown">
-                                <a href="#signin-modal" class="dropdown-toggle" role="button" data-toggle="modal"
-                                    aria-haspopup="true" aria-expanded="false" data-display="static"
-                                    title="Compare Products" aria-label="Compare Products">
+                                <a href="./login.html" class="dropdown-toggle" role="button">
                                     <div class="icon">
                                         <i class="fa-solid fa-right-to-bracket"></i>
                                     </div>
                                     <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
                                 </a>
 
-                            </div><!-- End .compare-dropdown -->
-                        </div><!-- End .header-right -->
+                            </div>
+
+
+
+                        </div>
                     </div><!-- End .container -->
                 </div><!-- End .header-middle -->
 
@@ -587,7 +587,7 @@
                                     <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
+
                                         <li><a href="cart.html">View Cart</a></li>
                                         <li><a href="#">My Wishlist</a></li>
                                         <li><a href="#">Track My Order</a></li>
@@ -700,129 +700,7 @@
             </div><!-- End .mobile-menu-wrapper -->
         </div><!-- End .mobile-menu-container -->
 
-        <!-- Sign in / Register Modal -->
-        <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="icon-close"></i></span>
-                        </button>
 
-                        <div class="form-box">
-                            <div class="form-tab">
-                                <ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
-                                            role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="register-tab" data-toggle="tab" href="#register"
-                                            role="tab" aria-controls="register" aria-selected="false">Register</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="tab-content-5">
-                                    <div class="tab-pane fade show active" id="signin" role="tabpanel"
-                                        aria-labelledby="signin-tab">
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <label for="singin-email">Username or email address *</label>
-                                                <input type="text" class="form-control" id="singin-email"
-                                                    name="singin-email" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group">
-                                                <label for="singin-password">Password *</label>
-                                                <input type="password" class="form-control" id="singin-password"
-                                                    name="singin-password" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-footer">
-                                                <button type="submit" class="btn btn-outline-primary-2">
-                                                    <span>LOG IN</span>
-                                                    <i class="icon-long-arrow-right"></i>
-                                                </button>
-
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="signin-remember">
-                                                    <label class="custom-control-label" for="signin-remember">Remember
-                                                        Me</label>
-                                                </div><!-- End .custom-checkbox -->
-
-                                                <a href="#" class="forgot-link">Forgot Your Password?</a>
-                                            </div><!-- End .form-footer -->
-                                        </form>
-                                        <div class="form-choice">
-                                            <p class="text-center">or sign in with</p>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <a href="#" class="btn btn-login btn-g">
-                                                        <i class="icon-google"></i>
-                                                        Login With Google
-                                                    </a>
-                                                </div><!-- End .col-6 -->
-
-                                            </div><!-- End .row -->
-                                        </div><!-- End .form-choice -->
-                                    </div><!-- .End .tab-pane -->
-                                    <div class="tab-pane fade" id="register" role="tabpanel"
-                                        aria-labelledby="register-tab">
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <label for="register-email">Your email address *</label>
-                                                <input type="email" class="form-control" id="register-email"
-                                                    name="register-email" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group">
-                                                <label for="register-password">Password *</label>
-                                                <input type="password" class="form-control" id="register-password"
-                                                    name="register-password" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-footer row">
-
-
-                                                <div class="col-md-12 custom-control custom-checkbox ">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="register-policy" required>
-                                                    <label class="custom-control-label" for="register-policy">I agree to
-                                                        the
-                                                        privacy policy
-
-                                                </div><!-- End .custom-checkbox -->
-                                                <div class="col-md-12">
-                                                    <button type="submit"
-                                                        class="btn btn-outline-primary-2 text-center w-100">
-                                                        <span>SIGN UP</span>
-                                                        <i class="icon-long-arrow-right"></i>
-                                                    </button>
-
-                                                </div>
-
-                                            </div><!-- End .form-footer -->
-                                        </form>
-                                        <div class="form-choice">
-                                            <p class="text-center">or sign in with</p>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <a href="#" class="btn btn-login btn-g">
-                                                        <i class="icon-google"></i>
-                                                        Login With Google
-                                                    </a>
-                                                </div><!-- End .col-6 -->
-
-                                            </div><!-- End .row -->
-                                        </div><!-- End .form-choice -->
-                                    </div><!-- .End .tab-pane -->
-                                </div><!-- End .tab-content -->
-                            </div><!-- End .form-tab -->
-                        </div><!-- End .form-box -->
-                    </div><!-- End .modal-body -->
-                </div><!-- End .modal-content -->
-            </div><!-- End .modal-dialog -->
-        </div><!-- End .modal -->
 
         <!-- Plugins JS File -->
         <script src="assets/js/jquery.min.js"></script>
