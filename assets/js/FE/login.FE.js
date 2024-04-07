@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await postData;
       if (res.status === true) {
         alert("login successfull");
-        console.log(res.data);
+        console.log(res.token);
 
         //window.location.href = "http://127.0.0.1:5502/index.html";
       } else {
