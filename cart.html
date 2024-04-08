@@ -37,6 +37,14 @@
     </head>
 
     <body>
+        <script>
+            if (!localStorage.getItem("accessToken")) {
+                window.location.href = "http://127.0.0.1:5502/login.html";
+            }
+        </script>
+
+
+
         <div class="page-wrapper">
             <header class="header header-intro-clearance header-3">
 
@@ -81,13 +89,26 @@
 
                             </div>
 
-                            <div class="dropdown compare-dropdown">
-                                <a href="./login.html" class="dropdown-toggle" role="button">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-right-to-bracket"></i>
-                                    </div>
-                                    <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
-                                </a>
+                            <div id="insert-info" class="">
+                                <div class="dropdown compare-dropdown">
+                                    <a href="./login.html" class="dropdown-toggle" role="button">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                        </div>
+                                        <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
+                                    </a>
+                                </div>
+
+                                <!--<div class="dropdown compare-dropdown">
+                                                                <a href="./login.html" class="dropdown-toggle" role="button">
+                                                                    <div class="icon">
+                            
+                                                                        <i class="fa-regular fa-user"></i>
+                                                                    </div>
+                                                                    <p style="color: #ffffff;">Huy Trần</p>
+                                                                </a>
+                                                            </div>-->
+
 
                             </div>
 
@@ -453,6 +474,7 @@
     </body>
 
 
-    <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
+    <!-- JS -->
+    <script type="module" src="./assets/js/FE/cart.FE.js"></script>
 
 </html>

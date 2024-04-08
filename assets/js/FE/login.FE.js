@@ -89,9 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await postData;
       if (res.status === true) {
         alert("login successfull");
-        console.log(res.token);
-
-        //window.location.href = "http://127.0.0.1:5502/index.html";
+        console.log(res);
+        const { token, fullName } = res;
+        console.log({ token, fullName });
+        showProfile(token, fullName);
+        window.location.href = "http://127.0.0.1:5502/index.html";
       } else {
         const template = `<span class="text-danger">Tài Khoản Hoặc Mật Khẩu Sai !!</span>`;
         notifi.insertAdjacentHTML("beforeend", template);
@@ -122,4 +124,9 @@ function isValidPhoneNumber(phone) {
   // Sử dụng regular expression để kiểm tra số điện thoại có đúng định dạng không (ví dụ: có đủ 10 số)
   const phoneRegex = /^\d{10}$/;
   return phoneRegex.test(phone);
+}
+
+function showProfile(token, username) {
+  localStorage.setItem("accessToken", token);
+  localStorage.setItem("userName", username);
 }
