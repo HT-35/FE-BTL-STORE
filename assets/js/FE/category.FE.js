@@ -21,57 +21,67 @@ document.addEventListener("DOMContentLoaded", async () => {
   const addProduct = document.querySelector(".add-new-product-laptop");
 
   const product = await callAPIFunction("http://localhost:3000/product/");
-  console.log("product:  ", product.data);
 
   const ArrProduct = product.data;
+  //  console.log(ArrProduct);
 
   ArrProduct.map((item) => {
-    console.log(item.nameLaptop);
-    const { image, slug } = item;
-    console.log("slug:   ", slug);
-    // console.log(img[0]);
+    //console.log(item.nameLaptop);
+    const { nameLaptop, img, slug, ram, storage, Specifications } = item;
+    const price = item.colors[0].price;
+    const Image = img[0].path[0];
+
+    const screen = Specifications.screen.screen;
+    const ramMemory = Specifications.ramMemory_hardDrive.HardDrive;
+    const battery = Specifications.otherInformation.BatteryInformation;
+    const cpuTechnology = Specifications.processor.cpuTechnology;
+    const Battery = Specifications.otherInformation.BatteryInformation;
+    console.log(Specifications);
+
     const template = `
-                                    <div class="col-6 col-md-4 col-lg-4">
-                                        <div class="product product-7 text-center">
-                                            <figure class="product-media">
-                                                <span class="product-label label-new">New</span>
-                                                <a href="product.html?product=${slug}">
-                                                    <img src="http://localhost:3000/${image[0]}" alt="Product image"
-                                                        class="product-image">
-                                                </a>
+                                        <div class="col-6 col-md-4 col-lg-4">
+                                            <div class="product product-7 text-center">
+                                                <figure class="product-media">
+                                                    <span class="product-label label-new">New</span>
+                                                    <a href="product.html?product=${slug}">
+                                                        <img src="http://localhost:3000/${Image}" alt="Product image"
+                                                            class="product-image">
+                                                    </a>
 
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>add to
-                                                            cart</span></a>
-                                                </div><!-- End .product-action -->
-                                            </figure><!-- End .product-media -->
+                                                    <div class="product-action">
+                                                        <a href="#" class="btn-product btn-cart"><span>add to
+                                                                cart</span></a>
+                                                    </div><!-- End .product-action -->
+                                                </figure><!-- End .product-media -->
 
-                                            <div class="product-body text-left">
+                                                <div class="product-body text-left">
 
-                                                <h3 class="product-title"><a href="product.html?product=${slug}"
-                                                        class="text-left">${item.nameLaptop}</a></h3><!-- End .product-title -->
-                                                <div class="product-price justify-content-left ">
-                                                    ${item.price}₫
-                                                </div><!-- End .product-price -->
-                                                <div class="ratings-container">
-                                                    <div class="ratings">
-                                                        <div class="ratings-val" style="width: 90%;"></div>
+                                                    <h3 class="product-title"><a href="product.html?product=${slug}"
+                                                            class="text-left">${nameLaptop}</a></h3><!-- End .product-title -->
+                                                    <div class="product-price justify-content-left ">
+                                                        ${price}₫
+                                                    </div><!-- End .product-price -->
+                                                    <div class="ratings-container">
+                                                        <div class="ratings">
+                                                            <div class="ratings-val" style="width: 90%;"></div>
 
+                                                        </div>
+                                                        <span class="ratings-text">( 5 Reviews )</span>
                                                     </div>
-                                                    <span class="ratings-text">( 5 Reviews )</span>
-                                                </div>
-                                                <div class="text-left">
-                                                    <p>Màn hình: 13.3", Retina</p>
-                                                    <p>CPU: Apple M1</p>
-                                                    <p>Card: 7 nhân GPU</p>
-                                                    <p>Pin: Lên đến 18 giờ</p>
-                                                    <p>Khối lượng: 1.29 kg</p>
-                                                </div>
+                                                    <div class="text-left">
+                                                        <p>Màn hình: ${screen}</p>
+                                                        <p>Ram: ${ramMemory}</p>
+                                                        <p>Rom: ${storage}</p>
+                                                        <p>CPU: ${cpuTechnology}</p>
+                                                        <p>Card: 7 nhân GPU</p>
+                                                        <p>Pin: ${Battery}</p>
+                                                        <p>Khối lượng: 1.29 kg</p>
+                                                    </div>
 
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product -->
-                                    </div><!-- End .col-sm-6 col-lg-4 -->
-`;
+                                                </div><!-- End .product-body -->
+                                            </div><!-- End .product -->
+                                        </div><!-- End .col-sm-6 col-lg-4 -->
+    `;
 
     // const div = document.createElement("div");
     // div.setAttribute("class", "row");

@@ -6944,8 +6944,9 @@ p {
 .product-nav-thumbs a,
 .product-nav-thumbs span {
   display: flex;
+  text-align:center;
   align-items: center;
-  width: 4.4rem;
+  width: 5.4rem;
   height: 4.4rem;
   border-radius: 0.2rem;
   border: 0.2rem solid #fff;

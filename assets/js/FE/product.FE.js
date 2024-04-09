@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const insertInfo = document.querySelector("#insert-info");
   if (localStorage.getItem("accessToken")) {
     insertInfo.innerHTML = "";
-    console.log("ok");
+
     const userName = localStorage.getItem("userName");
     const templateUser = `                <div class="dropdown compare-dropdown">
                                     <a href="./dashboard.html" class="dropdown-toggle" role="button">
@@ -28,129 +28,149 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const addNewImg = document.querySelector(".add-new-img");
 
-  const search = window.location.search;
-  const slug = search.substring(search.indexOf("=") + 1);
+  const currentURL = window.location.href;
 
-  const data = await callAPIFunction(`http://localhost:3000/product/${slug}`);
+  // Phân tích URL để lấy tham số 'product'
+  const urlParams = new URLSearchParams(currentURL.split("?")[1]);
+  const uriProduct = urlParams.get("product");
+  const uriColor = urlParams.get("color"); //  Get Query Color
 
+  //console.log("document.addEventListener ~ uriColor:", uriColor);
+
+  const data = await callAPIFunction(
+    `http://localhost:3000/product/${uriProduct}`
+  );
   const product = await data.data;
-  const {
-    Specifications,
-    image,
-    optionColorPrice,
-    optionMemoryPrice,
-    optionRamPrice,
-    nameLaptop,
-    price,
-    productInformation,
-  } = product;
 
-  console.log(product);
+  const { nameLaptop, img, ram, storage, colors, Specifications } = product;
 
-  const imgItem = document.querySelectorAll(".img-item");
+  const price = product.colors[0].price;
+  //const Image = img[0].path;
+  //const Image1 = img[1].path;
+  //console.log("document.addEventListener ~ img:", img);
+
+  // ====================  Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
+  const newImg = img.filter((item) => item.color == uriColor);
+  const Image = newImg.length > 0 ? [newImg[0].path][0] : [img[0].path][0];
+  console.log(Image);
+  // ==================== End Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
+
+  //console.log("newImg ~ newImg:", newImg);
+
+  //  console.log("document.addEventListener ~ Image:", Image);
+
+  const screen = Specifications.screen.screen;
+  const ramMemory = Specifications.ramMemory_hardDrive.HardDrive;
+  const battery = Specifications.otherInformation.BatteryInformation;
+  const cpuTechnology = Specifications.processor.cpuTechnology;
+  const Battery = Specifications.otherInformation.BatteryInformation;
 
   title.innerText = nameLaptop;
 
-  const template = `       <div class="">
-                                        <div class="product-gallery product-gallery-vertical">
-                                            <div class="row">
-                                                <figure class="product-main-image " style="height: 50%;">
-                                                    <img id="product-zoom" class="img-center"
-                                                        src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
-                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
-                                                        alt="product image">
+  // Lấy thẻ hình ảnh chính
+  const productZoom = document.getElementById("product-zoom");
+  // Lấy thẻ gallery hình ảnh
+  const productZoomGallery = document.getElementById("product-zoom-gallery");
 
-                                                    <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                                        <i class="icon-arrows"></i>
-                                                    </a>
-                                                </figure>
+  //  // Cập nhật hình ảnh chính
+  productZoom.src = `http://localhost:3000/${Image[0]}`;
+  productZoom.dataset.zoomImage = `http://localhost:3000/${Image[0]}`;
 
-                                                <div id="product-zoom-gallery" class="product-image-gallery">
-                                                    <a class="product-gallery-item active img-item" href="#"
-                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
-                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg">
-                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
-                                                            alt="product side">
-                                                    </a>
+  productZoomGallery.innerHTML = "";
+  Image.forEach((path, index) => {
+    const galleryItem = document.createElement("a");
+    galleryItem.classList.add("product-gallery-item", "img-item");
+    galleryItem.href = "javascript:void(0)";
+    galleryItem.dataset.image = `http://localhost:3000/${path}`;
+    galleryItem.dataset.zoomImage = `http://localhost:3000/${path}`;
 
-                                                    <a class="product-gallery-item img-item" href="#"
-                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg"
-                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg">
-                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg"
-                                                            alt="product cross">
-                                                    </a>
+    const img = document.createElement("img");
+    img.src = `http://localhost:3000/${path}`;
+    img.alt = "product image";
 
-                                                    <a class="product-gallery-item img-item" href="#"
-                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg"
-                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg">
-                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg"
-                                                            alt="product cross">
-                                                    </a>
-                                                    <a class="product-gallery-item img-item" href="#"
-                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg"
-                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg">
-                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg"
-                                                            alt="product cross">
-                                                    </a>
+    galleryItem.appendChild(img);
+    productZoomGallery.appendChild(galleryItem);
 
-                                                </div>
-                                            </div>
-                                        </div>
+    // Thêm sự kiện click để hiển thị hình ảnh khi click vào
+    galleryItem.addEventListener("click", () => {
+      console.log("Clicked!"); // Kiểm tra xem sự kiện click được kích hoạt hay không
+      console.log(`Path: ${path}`); // Kiểm tra xem đường dẫn hình ảnh được truyền đúng hay không
 
-                                    </div>`;
+      productZoom.src = `http://localhost:3000/${path}`;
+      productZoom.dataset.zoomImage = `http://localhost:3000/${path}`;
 
-  const templateDetail = `                                    <div class="">
-                                        <div class="product-details">
-                                            <div class="ratings-container">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 80%;"></div>
+      // Xóa lớp active khỏi tất cả các thẻ a trong gallery
+      galleryItems.forEach((item) => {
+        item.classList.remove("active");
+      });
 
-                                                </div>
-                                                <a class="ratings-text" href="#product-review-link" id="review-link">( 2
-                                                    Reviews
-                                                    )</a>
-                                            </div>
+      // Thêm lớp active cho thẻ a được click
+      galleryItem.classList.add("active");
+    });
 
-                                            <div class="product-price">
-                                                ${price} 
-                                            </div>
+    // Nếu là đối tượng đầu tiên, thêm lớp active
+    if (index === 0) {
+      galleryItem.classList.add("active");
+    }
+  });
 
+  // Lấy lại danh sách các thẻ a trong gallery
+  const galleryItems = document.querySelectorAll(".product-gallery-item");
 
+  // Thêm sự kiện click cho từng thẻ a trong gallery
+  galleryItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Xóa lớp active khỏi tất cả các thẻ a trong gallery
+      galleryItems.forEach((item) => {
+        item.classList.remove("active");
+      });
 
-                                            <div class="details-filter-row details-row-size">
-                                                <label>Màu:</label>
+      // Thêm lớp active cho thẻ a được click
+      item.classList.add("active");
 
-                                                <div class="product-nav product-nav-thumbs">
-                                                    <a href="#" >
-                                                        <img src="assets/images/products/single/1-thumb.jpg"
-                                                            alt="product desc">
-                                                    </a>
-                                                    <a href="#" class="active">
-                                                        <img src="assets/images/products/single/2-thumb.jpg"
-                                                            alt="product desc">
-                                                    </a>
-                                                </div>
-                                            </div>
+      // Cập nhật hình ảnh chính
+      productZoom.src = item.dataset.image;
+      productZoom.dataset.zoomImage = item.dataset.image;
+    });
+  });
 
+  //========================  End Insert Data  =======================
 
-                                            <div class="row">
-                                                <div class="col-12 col-sm-12 col-md-6   product-details-action">
-                                                    <a href="#" class="btn-product btn-cart text-center"
-                                                        style="height: 60px;"><span>Thêm Sản
-                                                            Phẩm</span></a>
+  const insertOptionColor = document.querySelector(".insert-option-color");
 
-                                                </div>
+  colors.forEach((item, index) => {
+    console.log("colors.forEach ~ item:", item.color);
 
-                                                <div class=" col-12 col-sm-12 col-md-6 product-details-action">
-                                                    <a href="./checkout.html" class="btn-product btn-cart"
-                                                        style="height: 60px;"><span>Mua
-                                                            Ngay</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>`;
+    const isActive = item.color === uriColor ? "active" : "";
+    const templateOptionColor = `
+                                    <a href="/product.html?product=${uriProduct}&color=${item.color}" class="color-thumb ml-2 text-center ${isActive}" >
 
-  //  addNewDetail.insertAdjacentHTML("beforeend", templateDetail);
+                                    <p class="text-center">${item.color}</p>
+                                </a>
+  
+    `;
+    insertOptionColor.insertAdjacentHTML("beforeend", templateOptionColor);
+  });
 
-  addNewImg.insertAdjacentHTML("beforeend", template);
+  const colorThumbnails = document.querySelectorAll(".color-thumb");
+
+  colorThumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      // Xóa lớp active khỏi tất cả các thumbnail
+      colorThumbnails.forEach((thumb) => {
+        thumb.classList.remove("active");
+      });
+      // Thêm lớp active cho thumbnail được click
+      thumbnail.classList.add("active");
+
+      // Lấy giá trị của màu sắc từ href của thumbnail
+      const color = thumbnail.getAttribute("href").split("#")[1]; // Lấy phần sau dấu #
+      console.log("thumbnail.addEventListener ~ color:", color);
+
+      //window.location.href = `./product.html?product=${uriProduct}&color=${color}`;
+      //window.location.replace(
+      //  "./product.html?product=" + uriProduct + "&color=" + color
+      //);
+    });
+  });
 });
