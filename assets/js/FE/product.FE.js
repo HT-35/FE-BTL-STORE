@@ -1,9 +1,33 @@
 import { callAPIFunction } from "../utils/callApi.js";
 document.addEventListener("DOMContentLoaded", async () => {
-  const addNewItem = document.querySelector(".add-new-item");
+  // ====================== Check Authen =========================
+  const insertInfo = document.querySelector("#insert-info");
+  if (localStorage.getItem("accessToken")) {
+    insertInfo.innerHTML = "";
+    console.log("ok");
+    const userName = localStorage.getItem("userName");
+    const templateUser = `                <div class="dropdown compare-dropdown">
+                                    <a href="./dashboard.html" class="dropdown-toggle" role="button">
+                                        <div class="icon">
 
-  const imgCenter = document.querySelector(".img-center");
-  // console.log(imgCenter);
+                                            <i class="fa-regular fa-user"></i>
+                                        </div>
+                                        <p style="color: #ffffff;">${userName}</p>
+                                    </a>
+                                </div>`;
+
+    insertInfo.insertAdjacentHTML("beforeend", templateUser);
+  }
+  // ====================== End Check Authen =========================
+
+  //========================   Insert Data  =======================
+
+  const title = document.querySelector("#title");
+
+  const addNewDetail = document.querySelector(".add-new-Detail");
+
+  const addNewImg = document.querySelector(".add-new-img");
+
   const search = window.location.search;
   const slug = search.substring(search.indexOf("=") + 1);
 
@@ -21,104 +45,112 @@ document.addEventListener("DOMContentLoaded", async () => {
     productInformation,
   } = product;
 
-  imgCenter.src =
-    "https://cdn.tgdd.vn/Products/Images/44/309016/Slider/vi-vn-apple-macbook-air-m2-2023-slider-1.jpg";
-
-  imgCenter.dataset.zoomImage =
-    "https://cdn.tgdd.vn/Products/Images/44/309016/Slider/vi-vn-apple-macbook-air-m2-2023-slider-1.jpg";
+  console.log(product);
 
   const imgItem = document.querySelectorAll(".img-item");
-  // console.log(imgItem);
 
-  imgItem.forEach((item, index) => {
-    console.log(item);
-    const imgElement = item.querySelector("img");
-    // console.log(imgElement);
-    if (index < image.length) {
-      item.dataset.image = `http://localhost:3000/${image[index]}`;
-      item.dataset.zoomImage = `http://localhost:3000/${image[index]}`;
+  title.innerText = nameLaptop;
 
-      imgElement.src = `http://localhost:3000/${image[index]}`;
-    } else {
-      console.log("Không đủ link ảnh trong mảng imgLinks.");
-    }
-  });
+  const template = `       <div class="">
+                                        <div class="product-gallery product-gallery-vertical">
+                                            <div class="row">
+                                                <figure class="product-main-image " style="height: 50%;">
+                                                    <img id="product-zoom" class="img-center"
+                                                        src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
+                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
+                                                        alt="product image">
 
-  const template = ` <img id="product-zoom" class="img-center"
-                                                src="assets/images/products/single/1.jpg"
-                                                data-zoom-image="assets/images/products/single/1-big.jpg"
-                                                alt="product image">`;
+                                                    <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                                        <i class="icon-arrows"></i>
+                                                    </a>
+                                                </figure>
 
-  const templateContent = `                            <div class="col-md-6 add-new-text">
-                                <div class="product-details">
-                                    <h1 class="product-title">Dark yellow lace cut out swing dress</h1>
-                                    <!-- End .product-title -->
+                                                <div id="product-zoom-gallery" class="product-image-gallery">
+                                                    <a class="product-gallery-item active img-item" href="#"
+                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
+                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg">
+                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-2.jpg"
+                                                            alt="product side">
+                                                    </a>
 
-                                    <div class="ratings-container">
-                                        <div class="ratings">
-                                            <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                        </div><!-- End .ratings -->
-                                        <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews
-                                            )</a>
-                                    </div><!-- End .rating-container -->
+                                                    <a class="product-gallery-item img-item" href="#"
+                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg"
+                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg">
+                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-3.jpg"
+                                                            alt="product cross">
+                                                    </a>
 
-                                    <div class="product-price">
-                                        $84.00
-                                    </div><!-- End .product-price -->
+                                                    <a class="product-gallery-item img-item" href="#"
+                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg"
+                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg">
+                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-4.jpg"
+                                                            alt="product cross">
+                                                    </a>
+                                                    <a class="product-gallery-item img-item" href="#"
+                                                        data-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg"
+                                                        data-zoom-image="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg">
+                                                        <img src="https://cdn.tgdd.vn/Products/Images/44/287769/Slider/vi-vn-lenovo-ideapad-3-15iau7-i3-82rk005lvn-5.jpg"
+                                                            alt="product cross">
+                                                    </a>
 
-                                    <div class="product-content">
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
-                                            metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.
-                                        </p>
-                                    </div><!-- End .product-content -->
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label>Color:</label>
+                                    </div>`;
 
-                                        <div class="product-nav product-nav-thumbs">
-                                            <a href="#" class="active">
-                                                <img src="http://localhost:3000/" alt="product desc">
-                                            </a>
-                                            <a href="#">
-                                                <img src="assets/images/products/single/2-thumb.jpg" alt="product desc">
-                                            </a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .details-filter-row -->
+  const templateDetail = `                                    <div class="">
+                                        <div class="product-details">
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 80%;"></div>
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="size">Size:</label>
-                                        <div class="select-custom">
-                                            <select name="size" id="size" class="form-control">
-                                                <option value="#" selected="selected">Select a size</option>
-                                                <option value="s">Small</option>
-                                                <option value="m">Medium</option>
-                                                <option value="l">Large</option>
-                                                <option value="xl">Extra Large</option>
-                                            </select>
-                                        </div><!-- End .select-custom -->
+                                                </div>
+                                                <a class="ratings-text" href="#product-review-link" id="review-link">( 2
+                                                    Reviews
+                                                    )</a>
+                                            </div>
 
-                                        <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
-                                    </div><!-- End .details-filter-row -->
+                                            <div class="product-price">
+                                                ${price} 
+                                            </div>
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="qty">Qty:</label>
-                                        <div class="product-details-quantity">
-                                            <input type="number" id="qty" class="form-control" value="1" min="1"
-                                                max="10" step="1" data-decimals="0" required>
-                                        </div><!-- End .product-details-quantity -->
-                                    </div><!-- End .details-filter-row -->
 
-                                    <div class="product-details-action">
-                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
 
-                                        <div class="details-action-wrapper">
-                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to
-                                                    Wishlist</span></a>
-                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to
-                                                    Compare</span></a>
-                                        </div><!-- End .details-action-wrapper -->
-                                    </div><!-- End .product-details-action -->
+                                            <div class="details-filter-row details-row-size">
+                                                <label>Màu:</label>
 
-                                </div><!-- End .product-details -->
-                            </div><!-- End .col-md-6 -->`;
+                                                <div class="product-nav product-nav-thumbs">
+                                                    <a href="#" >
+                                                        <img src="assets/images/products/single/1-thumb.jpg"
+                                                            alt="product desc">
+                                                    </a>
+                                                    <a href="#" class="active">
+                                                        <img src="assets/images/products/single/2-thumb.jpg"
+                                                            alt="product desc">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-12 col-sm-12 col-md-6   product-details-action">
+                                                    <a href="#" class="btn-product btn-cart text-center"
+                                                        style="height: 60px;"><span>Thêm Sản
+                                                            Phẩm</span></a>
+
+                                                </div>
+
+                                                <div class=" col-12 col-sm-12 col-md-6 product-details-action">
+                                                    <a href="./checkout.html" class="btn-product btn-cart"
+                                                        style="height: 60px;"><span>Mua
+                                                            Ngay</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+
+  //  addNewDetail.insertAdjacentHTML("beforeend", templateDetail);
+
+  addNewImg.insertAdjacentHTML("beforeend", template);
 });
