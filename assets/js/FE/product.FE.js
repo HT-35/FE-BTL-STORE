@@ -52,18 +52,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ====================  Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
   const newImg = img.filter((item) => item.color == uriColor);
   const Image = newImg.length > 0 ? [newImg[0].path][0] : [img[0].path][0];
-  console.log(Image);
+  //console.log(Image);
   // ==================== End Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
 
-  //console.log("newImg ~ newImg:", newImg);
+  //   destructuring data specifications
+  //const {
+  //  KeyboardLight,
+  //  TheWebOfCommunication,
+  //  Webcams,
+  //  WirelessConnectivity,
+  //} = Specifications.connectionPortsAndExpansionFeatures;
 
-  //  console.log("document.addEventListener ~ Image:", Image);
+  //const { AudioTechnology, GraphicCard } = Specifications.graphicsAndSound;
 
-  const screen = Specifications.screen.screen;
-  const ramMemory = Specifications.ramMemory_hardDrive.HardDrive;
-  const battery = Specifications.otherInformation.BatteryInformation;
-  const cpuTechnology = Specifications.processor.cpuTechnology;
-  const Battery = Specifications.otherInformation.BatteryInformation;
+  //const { BatteryInformation, ChargerCapacity, LaunchTime, OperatingSystem } =
+  //  Specifications.otherInformation;
+
+  //const {
+  //  caching,
+  //  cpuSpeed,
+  //  cpuTechnology,
+  //  maxSpeed,
+  //  multiplier,
+  //  numberOfStreams,
+  //} = Specifications.processor;
+
+  //const { HardDrive, MaximumRamSupport, ramBusSpeed, ramType } =
+  //  Specifications.ramMemory_hardDrive;
+
+  //const { colorCoverage, resolution, scanFrequency, screen, screenTechnology } =
+  //  Specifications.screen;
+
+  //const { Material, Size, volume } = Specifications.sizeVolume;
 
   title.innerText = nameLaptop;
 
@@ -93,8 +113,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Thêm sự kiện click để hiển thị hình ảnh khi click vào
     galleryItem.addEventListener("click", () => {
-      console.log("Clicked!"); // Kiểm tra xem sự kiện click được kích hoạt hay không
-      console.log(`Path: ${path}`); // Kiểm tra xem đường dẫn hình ảnh được truyền đúng hay không
+      //console.log("Clicked!"); // Kiểm tra xem sự kiện click được kích hoạt hay không
+      //console.log(`Path: ${path}`); // Kiểm tra xem đường dẫn hình ảnh được truyền đúng hay không
 
       productZoom.src = `http://localhost:3000/${path}`;
       productZoom.dataset.zoomImage = `http://localhost:3000/${path}`;
@@ -139,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const insertOptionColor = document.querySelector(".insert-option-color");
 
   colors.forEach((item, index) => {
-    console.log("colors.forEach ~ item:", item.color);
+    //console.log("colors.forEach ~ item:", item.color);
 
     const isActive = item.color === uriColor ? "active" : "";
     const templateOptionColor = `
@@ -162,15 +182,313 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       // Thêm lớp active cho thumbnail được click
       thumbnail.classList.add("active");
-
-      // Lấy giá trị của màu sắc từ href của thumbnail
-      const color = thumbnail.getAttribute("href").split("#")[1]; // Lấy phần sau dấu #
-      console.log("thumbnail.addEventListener ~ color:", color);
-
-      //window.location.href = `./product.html?product=${uriProduct}&color=${color}`;
-      //window.location.replace(
-      //  "./product.html?product=" + uriProduct + "&color=" + color
-      //);
     });
   });
+
+  const {
+    KeyboardLight,
+    TheWebOfCommunication,
+    Webcams,
+    WirelessConnectivity,
+  } = Specifications.connectionPortsAndExpansionFeatures;
+  console.log(Specifications.connectionPortsAndExpansionFeatures);
+
+  const { AudioTechnology, GraphicCard } = Specifications.graphicsAndSound;
+
+  const { BatteryInformation, ChargerCapacity, LaunchTime, OperatingSystem } =
+    Specifications.otherInformation;
+
+  const {
+    caching,
+    cpuSpeed,
+    cpuTechnology,
+    maxSpeed,
+    multiplier,
+    numberOfStreams,
+  } = Specifications.processor;
+
+  const { HardDrive, MaximumRamSupport, ramBusSpeed, ramType } =
+    Specifications.ramMemory_hardDrive;
+
+  const { colorCoverage, resolution, scanFrequency, screen, screenTechnology } =
+    Specifications.screen;
+
+  const { Material, Size, volume } = Specifications.sizeVolume;
+
+  const insertSpecifications = document.querySelector("#insert-specifications");
+
+  const templateSpecifications = `
+  
+                                              <div class="">
+
+                                                <!-- Bộ xử lý -->
+
+                                                <dcol-6 class="mt-2 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                            <h2 class="bg-gray">Bộ xử lý</h2>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Công
+                                                            nghệ CPU:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${cpuTechnology}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Số nhân:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${multiplier}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Số luồng:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${numberOfStreams}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Tốc độ CPU:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${cpuSpeed}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Tốc độ tối đa:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${maxSpeed}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-0 col-sm-4 col-md-3"></div>
+                                                        <div class="col-6 col-sm-4 col-md-4  ">Bộ nhớ đệm:
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-4">${caching}</div>
+                                                        <div class="col-0 col-sm-4 col-md-1"></div>
+                                                    </div>
+
+                                                    <!-- Bộ nhớ RAM, Ổ cứng -->
+                                                    <div class="mt-2 mb-2">
+
+
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Bộ nhớ RAM, Ổ cứng</h2>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">RAM:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${ram}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Loại RAM:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${ramType}
+                                                            </div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Tốc độ Bus RAM:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${ramBusSpeed}
+                                                            </div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Hỗ trợ RAM tối đa:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${MaximumRamSupport}
+                                                            </div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Ổ cứng:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${HardDrive}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Màn hình -->
+                                                    <div class="mt-2 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Màn hình</h2>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Màn hình:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${screen}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Độ phân giải:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${resolution}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Tần số quét:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${scanFrequency}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Công nghệ màn hình:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${screenTechnology}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Đồ họa và Âm thanh -->
+                                                    <div class="mt-2 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Đồ họa và Âm thanh</h2>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Card màn hình:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${GraphicCard}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Công nghệ âm thanh:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${AudioTechnology}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                    <!-- Cổng kết nối & tính năng mở rộng -->
+                                                    <div class="mt-2 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Cổng kết nối & tính năng mở rộng
+                                                                </h2>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Cổng giao tiếp:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${TheWebOfCommunication}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Kết nối không dây:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${WirelessConnectivity}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Webcam:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${Webcams}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Đèn bàn phím:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${KeyboardLight}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <!-- Kích thước & khối lượng -->
+                                                    <div class="mt-2 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Kích thước & khối lượng</h2>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Kích thước, khối
+                                                                lượng:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${volume} ${Size} </div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Chất liệu:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${Material}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- Thông tin khác -->
+                                                    <div class="mt-2 ">
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                                                                <h2 class="bg-gray">Thông tin khác</h2>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Thông tin Pin:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${BatteryInformation}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Hệ điều hành:</div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${OperatingSystem}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-0 col-sm-4 col-md-3"></div>
+                                                            <div class="col-6 col-sm-4 col-md-4  ">Thời điểm ra mắt:
+                                                            </div>
+                                                            <div class="col-6 col-sm-4 col-md-4">${LaunchTime}</div>
+                                                            <div class="col-0 col-sm-4 col-md-1"></div>
+                                                        </div>
+
+                                                    </div>
+
+                                            </div>
+  
+  `;
+
+  insertSpecifications.insertAdjacentHTML("beforeend", templateSpecifications);
 });
