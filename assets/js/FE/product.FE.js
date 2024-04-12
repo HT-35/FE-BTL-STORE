@@ -1,4 +1,4 @@
-import { callAPIFunction } from "../utils/callApi.js";
+import { callAPIFunction, fetchMethodPostAddCart } from "../utils/callApi.js";
 document.addEventListener("DOMContentLoaded", async () => {
   // ====================== Check Authen =========================
   const insertInfo = document.querySelector("#insert-info");
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   //========================   Insert Data  =======================
 
   const title = document.querySelector("#title");
+  const insertPrice = document.querySelector(".insert-price");
 
   const addNewDetail = document.querySelector(".add-new-Detail");
 
@@ -42,48 +43,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
   const product = await data.data;
 
-  const { nameLaptop, img, ram, storage, colors, Specifications } = product;
+  const { _id, nameLaptop, img, ram, storage, colors, Specifications } =
+    product;
 
-  const price = product.colors[0].price;
-  //const Image = img[0].path;
-  //const Image1 = img[1].path;
-  //console.log("document.addEventListener ~ img:", img);
+  //  const price = product.colors[0].price;
+
+  //========== innerText Price=================
+  const price = colors.filter((item) => item.color == uriColor);
+  const newPrice = price.length > 0 ? price[0].price : colors[0].price;
+  //  console.log("newPrice:    ", newPrice);
+  insertPrice.innerText = convertNumber(newPrice);
 
   // ====================  Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
   const newImg = img.filter((item) => item.color == uriColor);
   const Image = newImg.length > 0 ? [newImg[0].path][0] : [img[0].path][0];
-  //console.log(Image);
+
   // ==================== End Lọc và lấy  Hình Ảnh Theo Màu Sắc   ===============================
-
-  //   destructuring data specifications
-  //const {
-  //  KeyboardLight,
-  //  TheWebOfCommunication,
-  //  Webcams,
-  //  WirelessConnectivity,
-  //} = Specifications.connectionPortsAndExpansionFeatures;
-
-  //const { AudioTechnology, GraphicCard } = Specifications.graphicsAndSound;
-
-  //const { BatteryInformation, ChargerCapacity, LaunchTime, OperatingSystem } =
-  //  Specifications.otherInformation;
-
-  //const {
-  //  caching,
-  //  cpuSpeed,
-  //  cpuTechnology,
-  //  maxSpeed,
-  //  multiplier,
-  //  numberOfStreams,
-  //} = Specifications.processor;
-
-  //const { HardDrive, MaximumRamSupport, ramBusSpeed, ramType } =
-  //  Specifications.ramMemory_hardDrive;
-
-  //const { colorCoverage, resolution, scanFrequency, screen, screenTechnology } =
-  //  Specifications.screen;
-
-  //const { Material, Size, volume } = Specifications.sizeVolume;
 
   title.innerText = nameLaptop;
 
@@ -161,14 +136,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   colors.forEach((item, index) => {
     //console.log("colors.forEach ~ item:", item.color);
 
-    const isActive = item.color === uriColor ? "active" : "";
-    const templateOptionColor = `
-                                    <a href="/product.html?product=${uriProduct}&color=${item.color}" class="color-thumb ml-2 text-center ${isActive}" >
+    let isActive = "";
+    if (uriColor) {
+      isActive = item.color === uriColor ? "active" : "";
+    } else {
+      isActive = index === 0 ? "active" : "";
+    }
 
-                                    <p class="text-center">${item.color}</p>
-                                </a>
-  
-    `;
+    const templateOptionColor = `
+                                        <a href="/product.html?product=${uriProduct}&color=${item.color}" class="color-thumb ml-2 text-center ${isActive}" >
+
+                                        <p class="text-center">${item.color}</p>
+                                    </a>
+
+        `;
     insertOptionColor.insertAdjacentHTML("beforeend", templateOptionColor);
   });
 
@@ -185,13 +166,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
+  //=============================  insert data =============================
+
   const {
     KeyboardLight,
     TheWebOfCommunication,
     Webcams,
     WirelessConnectivity,
   } = Specifications.connectionPortsAndExpansionFeatures;
-  console.log(Specifications.connectionPortsAndExpansionFeatures);
 
   const { AudioTechnology, GraphicCard } = Specifications.graphicsAndSound;
 
@@ -215,10 +197,62 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const { Material, Size, volume } = Specifications.sizeVolume;
 
+  const insertSpecificationCompact = document.querySelector(
+    ".insert-specificationCompact"
+  );
+
+  const templateSpecificationCompact = `
+
+                                                        <div class="">
+
+                                                        <div class="row">
+                                                            <div class="col-6 col-sm-6 col-md-6 "
+                                                                style="font-weight: 400;font-size: 1.4rem">Công nghệ
+                                                                CPU:
+                                                            </div>
+                                                            <div class="col-6 col-sm-6 col-md-6 ">${cpuTechnology}</div>
+                                                        </div>
+
+                                                        <div class="mt-2">
+                                                            <div class="row">
+                                                                <div class="col-6 col-sm-6 col-md-6"
+                                                                    style="font-weight: 400;font-size: 1.4rem">Màn hình:
+                                                                </div>
+                                                                <div class="col-6 col-sm-6 col-md-6">${screen}</div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <div class="row">
+                                                                <div class="col-6 col-sm-6 col-md-6"
+                                                                    style="font-weight: 400;font-size: 1.4rem">RAM:
+                                                                </div>
+                                                                <div class="col-6 col-sm-6 col-md-6">${ram}</div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="mt-2 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-6 col-sm-6 col-md-6"
+                                                                    style="font-weight: 400;">Ổ
+                                                                    Cứng:</div>
+                                                                <div class="col-6 col-sm-6 col-md-6">${HardDrive}</div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+    `;
+
+  insertSpecificationCompact.insertAdjacentHTML(
+    "beforeend",
+    templateSpecificationCompact
+  );
+
   const insertSpecifications = document.querySelector("#insert-specifications");
 
   const templateSpecifications = `
-  
+
                                               <div class="">
 
                                                 <!-- Bộ xử lý -->
@@ -278,7 +312,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                     <!-- Bộ nhớ RAM, Ổ cứng -->
                                                     <div class="mt-2 mb-2">
 
-
                                                         <div class="row">
                                                             <div class="col-12 col-sm-12 col-md-12 text-center">
                                                                 <h2 class="bg-gray">Bộ nhớ RAM, Ổ cứng</h2>
@@ -326,7 +359,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                         </div>
                                                     </div>
 
-
                                                     <!-- Màn hình -->
                                                     <div class="mt-2 mb-2">
                                                         <div class="row">
@@ -363,7 +395,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                         </div>
                                                     </div>
 
-
                                                     <!-- Đồ họa và Âm thanh -->
                                                     <div class="mt-2 mb-2">
                                                         <div class="row">
@@ -387,8 +418,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                         </div>
 
                                                     </div>
-
-
 
                                                     <!-- Cổng kết nối & tính năng mở rộng -->
                                                     <div class="mt-2 mb-2">
@@ -427,7 +456,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                         </div>
 
                                                     </div>
-
 
                                                     <!-- Kích thước & khối lượng -->
                                                     <div class="mt-2 mb-2">
@@ -487,8 +515,38 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                     </div>
 
                                             </div>
-  
+
   `;
 
   insertSpecifications.insertAdjacentHTML("beforeend", templateSpecifications);
+
+  // =================================  btn-add-car ========================================
+
+  const btnAddCart = document.querySelector("#btn-add-cart");
+
+  const getColor = colors.filter((item) => item.color == uriColor);
+  const color = getColor.length > 0 ? getColor[0].color : colors[0].color;
+
+  btnAddCart.addEventListener("click", async (e) => {
+    const cart = {
+      token: localStorage.getItem("accessToken"),
+      id_product: _id,
+      quantity: 1,
+      color: color,
+    };
+    e.preventDefault();
+    console.log("btnAddCart");
+    const addCartProduct = await fetchMethodPostAddCart(
+      "http://localhost:3000/cart",
+      cart
+    );
+    if (!addCartProduct.status) {
+      window.location.href = "./login.html";
+    }
+    console.log(addCartProduct);
+  });
 });
+
+function convertNumber(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}

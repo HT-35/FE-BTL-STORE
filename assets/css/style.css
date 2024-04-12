@@ -10785,11 +10785,15 @@ button:focus {
 .product-details-action .btn-cart:before {
   margin-right: 0.4rem;
 }
-.product-details-action .btn-cart:hover,
-.product-details-action .btn-cart:focus {
+.product-details-action .btn-cart:hover {
   color: #fff;
-  border-color: #c96;
-  background-color: #c96;
+  border-color: #d9a300;
+  background-color: #d9a300;
+}
+.product-details-action .btn-cart:active {
+  color: #fff;
+  border-color: #a87037;
+  background-color: #a87037;
 }
 .details-action-wrapper {
   display: flex;

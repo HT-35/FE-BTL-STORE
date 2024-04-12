@@ -70,12 +70,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                     </div>
                                                     <div class="text-left">
                                                         <p>Màn hình: ${screen}</p>
-                                                        <p>Ram: ${ramMemory}</p>
+                                                        <p>Ram: ${ram}</p>
                                                         <p>Rom: ${storage}</p>
                                                         <p>CPU: ${cpuTechnology}</p>
-                                                        <p>Card: 7 nhân GPU</p>
                                                         <p>Pin: ${Battery}</p>
-                                                        <p>Khối lượng: 1.29 kg</p>
+                                                  
                                                     </div>
 
                                                 </div><!-- End .product-body -->
