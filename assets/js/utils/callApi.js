@@ -39,9 +39,23 @@ const fetchGetAllCard = async (API, token) => {
   return data; // Không cần await ở đây
 };
 
+const changeQuantityProductInCard = async (API, token, requestData) => {
+  const response = await fetch(API, {
+    method: "PATCH", // chỉ cần method là "GET"
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`, // Thêm token vào header nếu cần
+    },
+    body: JSON.stringify(requestData),
+  });
+  const responseData = await response.json();
+  return await responseData;
+};
+
 export {
   callAPIFunction,
   fetchMethodPost,
   fetchMethodPostAddCart,
   fetchGetAllCard,
+  changeQuantityProductInCard,
 };
