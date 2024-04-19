@@ -13395,7 +13395,7 @@ button:focus {
   padding-bottom: 3rem;
 }
 .table .price-col {
-  width: 180px;
+  width: 250px;
   color: #333;
   font-weight: 400;
   font-size: 1.6rem;
@@ -13449,7 +13449,7 @@ button:focus {
   margin: 0;
   margin-right: 2.8rem;
   flex-shrink: 0;
-  max-width: 60px;
+  max-width: 80px;
 }
 .product-col .product-title {
   display: inline-block;
@@ -13607,10 +13607,10 @@ button:focus {
   width: 120px;
 }
 .table.table-cart .total-col {
-  width: 80px;
+  width: 150px;
 }
 .table.table-cart .quantity-col {
-  width: 135px;
+  width: 80px;
 }
 .cart-product-quantity {
   width: 100px;

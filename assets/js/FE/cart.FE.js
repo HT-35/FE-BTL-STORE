@@ -41,8 +41,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   //console.log("document.addEventListener ~ insertData:", insertData);
 
   product.forEach((item, index) => {
-    const { _id, color, img, nameLaptop, number, price, storage, quantity } =
-      item;
+    const {
+      _id,
+      slug,
+      color,
+      img,
+      nameLaptop,
+      number,
+      price,
+      storage,
+      quantity,
+    } = item;
+    console.log(item);
 
     const filterPathImg = img.filter((item) => item.color === color);
     const pathImg = `http://localhost:3000/${filterPathImg[0].path[0]}`;
@@ -86,8 +96,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td class="total-col total-change" style=" width: 150px;">${convertNumber(
               total
             )}đ</td>
-            <td class="total-col"><button class="btn btn-outline-primary-2 checkout" 
-                    type="submit">Thanh Toán</button>
+            <td class="total-col"> <a href='./checkout.html?product=${slug}&color=${color}'> <button class="btn btn-outline-primary-2 checkout" 
+                    type="submit">Thanh Toán</button></a>
             </td>
             <td class="remove-col"><button class="btn-remove"><i
                         class="icon-close"></i></button></td>

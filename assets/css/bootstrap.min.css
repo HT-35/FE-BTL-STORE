@@ -3055,15 +3055,15 @@ input[type="submit"].btn-block {
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
-  color: #16181b;
+  color: #ffffff;
   text-decoration: none;
-  background-color: #f8f9fa;
+  background-color: #a5b1be;
 }
 .dropdown-item.active,
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #007bff;
+  background-color: #cc9966;
 }
 .dropdown-item.disabled,
 .dropdown-item:disabled {

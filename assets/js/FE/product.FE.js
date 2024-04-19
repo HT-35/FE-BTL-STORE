@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const title = document.querySelector("#title");
   const insertPrice = document.querySelector(".insert-price");
 
-  const addNewDetail = document.querySelector(".add-new-Detail");
+  //  const addNewDetail = document.querySelector(".add-new-Detail");
 
-  const addNewImg = document.querySelector(".add-new-img");
+  //  const addNewImg = document.querySelector(".add-new-img");
 
   const currentURL = window.location.href;
 

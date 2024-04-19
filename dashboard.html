@@ -26,6 +26,10 @@
         <meta name="theme-color" content="#ffffff">
 
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,14 +42,15 @@
     </head>
 
     <body>
+
+
+
         <div class="page-wrapper">
             <header class="header header-intro-clearance header-3">
 
                 <div class="header-middle">
                     <div class="container">
                         <div class="header-left">
-
-
                             <a href="index.html" class="logo">
                                 <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25">
                             </a>
@@ -74,7 +79,7 @@
                                     <div class="icon">
                                         <i class="icon-shopping-cart"></i>
                                     </div>
-                                    <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
+                                    <p style="color: #ffffff;">Card</p>
                                 </a>
 
                             </div>
@@ -140,7 +145,8 @@
                         <div class="container">
                             <div class="row">
                                 <aside class="col-md-4 col-lg-3">
-                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" id="select-option"
+                                        role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab"
                                                 href="#tab-dashboard" role="tab" aria-controls="tab-dashboard"
@@ -156,7 +162,7 @@
                                                 href="#tab-downloads" role="tab" aria-controls="tab-downloads"
                                                 aria-selected="false">Downloads</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item" id="tab-address-link-select">
                                             <a class="nav-link" id="tab-address-link" data-toggle="tab"
                                                 href="#tab-address" role="tab" aria-controls="tab-address"
                                                 aria-selected="false">Adresses</a>
@@ -203,42 +209,103 @@
                                         </div><!-- .End .tab-pane -->
 
                                         <div class="tab-pane fade" id="tab-address" role="tabpanel"
-                                            aria-labelledby="tab-address-link">
-                                            <p>The following addresses will be used on the checkout page by default.</p>
+                                            aria-labelledby="tab-address-link" data-toggle="tab"
+                                            data-parent="#tab-content">
 
                                             <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="card card-dashboard">
-                                                        <div class="card-body">
-                                                            <h3 class="card-title">Billing Address</h3>
-                                                            <!-- End .card-title -->
+                                                <div class="">
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModal">
+                                                        Thêm Địa Chỉ Giao Hàng
+                                                    </button>
 
-                                                            <p>User Name<br>
-                                                                User Company<br>
-                                                                John str<br>
-                                                                New York, NY 10001<br>
-                                                                1-234-987-6543<br>
-                                                                yourmail@mail.com<br>
+                                                    <!-- Modal -->
+                                                    <!-- Khai báo modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        Địa Chỉ Giao Hàng</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body p-3">
+                                                                    <form id="register-form">
+                                                                        <div class="form-group">
+                                                                            <label for="email-Rigister">Email</label>
+                                                                            <input type="email" class="form-control"
+                                                                                id="email-Rigister" name="email"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="number-phone-Rigister">Số
+                                                                                Điện Thoại</label>
+                                                                            <input type="tel" class="form-control"
+                                                                                id="number-phone-Rigister"
+                                                                                name="numberphone" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="register-address">Địa Chỉ
+                                                                                Giao Hàng</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="register-address" name="address"
+                                                                                required>
+                                                                            <p id="error-email" class="text-danger">
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <!-- Chú ý: data-dismiss="modal" đã được loại bỏ từ nút "Save changes" -->
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        id="saveChangesBtn">Thêm Địa Chỉ Giao
+                                                                        Hàng</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row insert-address">
+                                                    <div class="col-lg-12">
+                                                        <div class="card card-dashboard ">
+                                                            <div class="card-body">
+                                                                <h3 class="card-title">Địa Chỉ Giao Hàng 1</h3>
+                                                                <div class="row">
+                                                                    <div class="col-4 col-sm-4 col-md-4">Số Điện Thoại
+                                                                    </div>
+                                                                    <div class="col-8 col-sm-8 col-md-8">0345680700
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4 col-sm-4 col-md-4">Địa Chỉ</div>
+                                                                    <div class="col-8 col-sm-8 col-md-8">
+                                                                        huyfa352002@gmail.com
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4 col-sm-4 col-md-4">Địa Chỉ Email
+                                                                    </div>
+                                                                    <div class="col-8 col-sm-8 col-md-8">
+                                                                        Tạp hoá quỳnh trang, tổ 36, khu phố vườn dừa,
+                                                                        phường phước tân, biên hoà, đồng nai</div>
+                                                                </div>
                                                                 <a href="#">Edit <i class="icon-edit"></i></a>
-                                                            </p>
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .card-dashboard -->
-                                                </div><!-- End .col-lg-6 -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                                <div class="col-lg-6">
-                                                    <div class="card card-dashboard">
-                                                        <div class="card-body">
-                                                            <h3 class="card-title">Shipping Address</h3>
-                                                            <!-- End .card-title -->
 
-                                                            <p>You have not set up this type of address yet.<br>
-                                                                <a href="#">Edit <i class="icon-edit"></i></a>
-                                                            </p>
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .card-dashboard -->
-                                                </div><!-- End .col-lg-6 -->
+                                                </div>
                                             </div><!-- End .row -->
                                         </div><!-- .End .tab-pane -->
+
 
                                         <div class="tab-pane fade" id="tab-account" role="tabpanel"
                                             aria-labelledby="tab-account-link">
@@ -286,91 +353,94 @@
                 </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-            <footer class="footer">
-                <div class="footer-middle">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget widget-about">
-                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105"
-                                        height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu
-                                        vulputate magna eros eu erat. </p>
 
-                                    <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i
-                                                class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i
-                                                class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i
-                                                class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i
-                                                class="icon-pinterest"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .widget about-widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-middle -->
-
-                <div class="footer-bottom">
-                    <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p>
-                        <!-- End .footer-copyright -->
-                        <figure class="footer-payments">
-                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
-                        </figure><!-- End .footer-payments -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-bottom -->
-            </footer><!-- End .footer -->
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
+
+
+        <!--   đóng modal khi save -->
+        <!-- Script JavaScript -->
+        <!--<script>
+            // Lấy thẻ nút "Save changes"
+            var saveChangesBtn = document.getElementById('saveChangesBtn');
+
+            // Gán sự kiện click cho nút "Save changes"
+            saveChangesBtn.addEventListener('click', function () {
+                // Lấy giá trị từ các trường nhập
+                var emailInput = document.getElementById('email-Rigister');
+                var numberPhoneInput = document.getElementById('number-phone-Rigister');
+                var addressInput = document.getElementById('register-address');
+
+                // Kiểm tra xem các trường có được nhập đủ không
+                var emailValue = emailInput.value;
+                var numberPhoneValue = numberPhoneInput.value;
+                var addressValue = addressInput.value;
+
+                if (!emailValue || !numberPhoneValue || !addressValue) {
+                    alert("Vui lòng nhập đầy đủ thông tin!");
+                    return; // Dừng việc thực hiện hàm tiếp theo nếu có trường không được nhập đủ
+                }
+
+                // Kiểm tra định dạng email
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailValue)) {
+                    alert("Email không hợp lệ!");
+                    return; // Dừng việc thực hiện hàm tiếp theo nếu email không hợp lệ
+                }
+
+                // Kiểm tra định dạng số điện thoại (ví dụ: 10 chữ số)
+                var phoneRegex = /^\d{10}$/;
+                if (!phoneRegex.test(numberPhoneValue)) {
+                    alert("Số điện thoại không hợp lệ!");
+                    return; // Dừng việc thực hiện hàm tiếp theo nếu số điện thoại không hợp lệ
+                }
+
+                if (addressValue.length > 2 || numberPhoneValue.length > 2 || emailValue.length > 2) {
+
+                    saveChangesBtn.setAttribute('data-dismiss', "modal")
+                    // Xóa thông tin đã nhập
+                    emailInput.value = '';
+                    numberPhoneInput.value = '';
+                    addressInput.value = '';
+                    console.log(emailInput, numberPhoneInput, addressInput);
+                    setTimeout(() => {
+                        saveChangesBtn.removeAttribute('data-dismiss')
+
+                    }, 200);
+                }
+
+
+
+
+            });
+        </script>-->
+
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+            crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+            crossorigin="anonymous"></script>
 
 
         <!-- Plugins JS File -->

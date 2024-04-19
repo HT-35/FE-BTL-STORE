@@ -3,6 +3,17 @@ const callAPIFunction = async (API) => {
   const data = await response.json();
   return await data;
 };
+const callApiMethodGet = async (API, token) => {
+  const response = await fetch(API, {
+    method: "GET", // chỉ cần method là "GET"
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`, // Thêm token vào header nếu cần
+    },
+  });
+  const data = await response.json();
+  return data; // Không cần await ở đây
+};
 
 const fetchMethodPost = async (API, info) => {
   const response = await fetch(API, {
@@ -52,10 +63,25 @@ const changeQuantityProductInCard = async (API, token, requestData) => {
   return await responseData;
 };
 
+const callAPIMethodPost = async (API, token, requestData) => {
+  const response = await fetch(API, {
+    method: "POST", // chỉ cần method là "GET"
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`, // Thêm token vào header nếu cần
+    },
+    body: JSON.stringify(requestData),
+  });
+  const responseData = await response.json();
+  return await responseData;
+};
+
 export {
   callAPIFunction,
+  callApiMethodGet,
   fetchMethodPost,
   fetchMethodPostAddCart,
   fetchGetAllCard,
   changeQuantityProductInCard,
+  callAPIMethodPost,
 };
