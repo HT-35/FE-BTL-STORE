@@ -523,9 +523,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // =================================  btn-add-car ========================================
 
   const btnAddCart = document.querySelector("#btn-add-cart");
+  const btnCheckout = document.querySelector("#btn-checkout");
+  console.log("btnCheckout:", btnCheckout);
 
   const getColor = colors.filter((item) => item.color == uriColor);
   const color = getColor.length > 0 ? getColor[0].color : colors[0].color;
+  console.log("color:", color);
 
   btnAddCart.addEventListener("click", async (e) => {
     const cart = {
@@ -544,6 +547,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "./login.html";
     }
     console.log(addCartProduct);
+  });
+
+  btnCheckout.addEventListener("click", async (e) => {
+    //const cart = {
+    //  token: localStorage.getItem("accessToken"),
+    //  id_product: _id,
+    //  quantity: 1,
+    //  color: color,
+    //};
+    //console.log("cart:", cart);
+
+    window.location.href = `./checkout.html?product=${uriProduct}&color=${color}`;
   });
 });
 

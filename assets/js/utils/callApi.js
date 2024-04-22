@@ -76,6 +76,19 @@ const callAPIMethodPost = async (API, token, requestData) => {
   return await responseData;
 };
 
+const callAPIMethodDelete = async (API, token, requestData) => {
+  const response = await fetch(API, {
+    method: "Delete", // chỉ cần method là "GET"
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`, // Thêm token vào header nếu cần
+    },
+    body: JSON.stringify(requestData),
+  });
+  const responseData = await response.json();
+  return await responseData;
+};
+
 export {
   callAPIFunction,
   callApiMethodGet,
@@ -84,4 +97,5 @@ export {
   fetchGetAllCard,
   changeQuantityProductInCard,
   callAPIMethodPost,
+  callAPIMethodDelete,
 };

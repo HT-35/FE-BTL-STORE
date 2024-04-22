@@ -1,5 +1,12 @@
-import { callAPIFunction, callApiMethodGet } from "../utils/callApi.js";
+import {
+  callAPIFunction,
+  callAPIMethodDelete,
+  callAPIMethodPost,
+  callApiMethodGet,
+  fetchMethodPostAddCart,
+} from "../utils/callApi.js";
 
+const addressInsert = document.querySelector(".address-insert");
 const token = localStorage.getItem("accessToken");
 const apiGetListAddress = "http://localhost:3000/delivery-address";
 
@@ -58,8 +65,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const quantity = getProductDetailInCard.data[0].quantity;
 
-  const totalPrice = quantity * newPrice;
-  console.log(totalPrice);
+  const totalPrice = Number(quantity) * Number(newPrice);
+  //console.log(getProductDetailInCard);
 
   totalCheckout.innerText = `${convertNumber(totalPrice)}đ`;
 
@@ -84,8 +91,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <td class="price-col text-center">${convertNumber(
                           newPrice
                         )}đ</td>
-                        <td class="quantity-col">
-                            <p class="price-col text-center">${quantity}</p>
+                        <td class="quantity-col  text-center">
+                            <p ">${quantity}</p>
                         </td>
                         <td class="total-col text-center">${convertNumber(
                           totalPrice
@@ -104,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   listAddress?.data.forEach((item, index) => {
     const { numberPhone, id_User, id, email_address, address } = item;
     const templateAdress = `
-              <button type="button" class="dropdown-item address"  data-id='${id}'>
+              <button type="button" class="dropdown-item address" id='id-address'  data-id='${id}'>
                 <div class="card-body">
                     <h3 class="card-title mb-1">Địa Chỉ Giao Hàng ${
                       index + 1
@@ -133,6 +140,42 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     insertAddress.insertAdjacentHTML("beforeend", templateAdress);
   });
+
+  // ====================================== add default address ======================================
+
+  //console.log(listAddress.data[0]);
+
+  const { numberPhone, id_User, id, email_address } = listAddress.data[0];
+  const addressShip = listAddress.data[0].address;
+
+  const templateAdressDefault = `
+       <div class="card-body  p-0" id='id-address' data-id='${id}'>
+                                                    <h3 class="card-title mb-1">Địa Chỉ Giao Hàng </h3>
+                                                    <div class="row mb-1">
+                                                        <div class="col-4 col-sm-4 col-md-4">Số Điện Thoại
+                                                        </div>
+                                                        <div class="col-8 col-sm-8 col-md-8">${numberPhone}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-1">
+                                                        <div class="col-4 col-sm-4 col-md-4">Địa Chỉ</div>
+                                                        <div class="col-8 col-sm-8 col-md-8">
+                                                            ${addressShip}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-1">
+                                                        <div class="col-4 col-sm-4 col-md-4">Địa Chỉ Email
+                                                        </div>
+                                                        <div class="col-8 col-sm-8 col-md-8">
+                                                            ${email_address}
+                                                        </div>
+                                                    </div>
+                                                </div>
+  `;
+
+  addressInsert.insertAdjacentHTML("beforeend", templateAdressDefault);
+
+  // ==================    add Create Address =============
   const templateAddAdress = `
        <button class="dropdown-item">
             <p class='text-danger'>Thêm Vị Trí Giao Hàng </p>
@@ -142,15 +185,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   //====================    Get Selection address    =========
   const address = document.querySelectorAll(".address");
-  let idAddress = 0;
+
   address.forEach((item) => {
     //console.log(address);
     item.addEventListener("click", (e) => {
-      //console.log(e.currentTarget);
-
-      const addressInsert = document.querySelector(".address-insert");
-
-      idAddress = e.currentTarget.getAttribute("data-id");
+      let idAddress = e.currentTarget.getAttribute("data-id");
 
       const numberPhone = e.currentTarget
         .querySelector("#numberPhone-address")
@@ -163,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         .textContent.trim();
 
       const templateAddressShiping = `
-                           <div class="card-body  p-0">
+                           <div class="card-body  p-0" id='id-address' data-id='${idAddress}'>
                                                     <h3 class="card-title mb-1">Địa Chỉ Giao Hàng </h3>
                                                     <div class="row">
                                                         <div class="col-4 col-sm-4 col-md-4">Số Điện Thoại
@@ -191,9 +230,43 @@ document.addEventListener("DOMContentLoaded", async () => {
       addressInsert.insertAdjacentHTML("beforeend", templateAddressShiping);
     });
   });
-  //setTimeout(() => {
-  //  console.log("idAddress:", idAddress);
-  //}, 10000);
+  //=========================   button checkout  ====================================
+
+  const btnCheckout = document.querySelector("#btn-checkout");
+
+  btnCheckout.addEventListener("click", async () => {
+    const idAddress = addressInsert
+      .querySelector("#id-address")
+      .getAttribute("data-id");
+
+    const bill = {
+      id_address: idAddress,
+      id_product: [slugProduct],
+      quanlity: [quantity],
+      color: [color],
+    };
+    const createBill = await callAPIMethodPost(
+      "http://localhost:3000/bill",
+      localStorage.getItem("accessToken"),
+      bill
+    );
+
+    // remove product in cart after checkout
+    const product = {
+      id_product: _id,
+      color: color,
+    };
+    console.log(product);
+    const removeProduct = await callAPIMethodDelete(
+      "http://localhost:3000/cart/remove-product",
+      localStorage.getItem("accessToken"),
+      product
+    );
+    console.log(removeProduct);
+    const idBill = createBill.data.id;
+    console.log("idBill:", idBill);
+    window.location.href = `/bill.html?bill=${idBill}`;
+  });
 });
 
 function convertNumber(number) {

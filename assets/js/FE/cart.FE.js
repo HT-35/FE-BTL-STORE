@@ -1,5 +1,6 @@
 import {
   callAPIFunction,
+  callAPIMethodDelete,
   changeQuantityProductInCard,
   fetchGetAllCard,
 } from "../utils/callApi.js";
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage,
       quantity,
     } = item;
-    console.log(item);
+    //console.log(item);
 
     const filterPathImg = img.filter((item) => item.color === color);
     const pathImg = `http://localhost:3000/${filterPathImg[0].path[0]}`;
@@ -99,8 +100,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td class="total-col"> <a href='./checkout.html?product=${slug}&color=${color}'> <button class="btn btn-outline-primary-2 checkout" 
                     type="submit">Thanh Toán</button></a>
             </td>
-            <td class="remove-col"><button class="btn-remove"><i
-                        class="icon-close"></i></button></td>
+            <td class="remove-col">
+                              <button class="btn-remove" data-id='${_id}'><i class="icon-close" ></i>
+                              </button
+            </td>
         </tr>           
     `;
 
@@ -155,7 +158,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     input.addEventListener("input", debounceHandleInputChange);
   });
 
-  // === ===  ===   ===   ===   End  Increase Quantity Or  Reduce Quantity === ===  ===   ===   ===
+  // === ===  ===   ===   ===   End  Increase Quantity Or  Reduce Quantity === ===  ===   ===
+
+  //  =========================   Handle Remove btn-remove ===  === ===  ======  =====
+
+  const btnRemove = document.querySelectorAll(".btn-remove");
+  btnRemove.forEach((item) => {
+    item.addEventListener("click", async (e) => {
+      const id_product = e.currentTarget.dataset.id;
+      const color = e.target
+        .closest("tr")
+        .querySelector(".price-col")
+        .innerText.trim();
+
+      const product = {
+        id_product,
+        color,
+      };
+      console.log("Product:", product);
+      const removeProduct = await callAPIMethodDelete(
+        "http://localhost:3000/cart/remove-product",
+        localStorage.getItem("accessToken"),
+        product
+      );
+      console.log(removeProduct);
+      if (removeProduct.status === true) {
+        window.location.reload();
+      }
+    });
+  });
 });
 
 function convertNumber(number) {

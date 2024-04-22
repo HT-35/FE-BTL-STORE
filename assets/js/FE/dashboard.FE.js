@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const insertInfo = document.querySelector("#insert-info");
   const token = localStorage.getItem("accessToken");
-  console.log(token);
+  //console.log(token);
   if (token) {
     insertInfo.innerHTML = "";
-    console.log("ok");
+    //console.log("ok");
     const userName = localStorage.getItem("userName");
     const templateUser = `                <div class="dropdown compare-dropdown">
                                     <a href="./dashboard.html" class="dropdown-toggle" role="button">
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
   listAddress.data.forEach((addr, index) => {
     const { id, address, email_address, numberPhone } = addr;
-    console.log(id);
+    //console.log(id);
 
     const templateAddress = `
   
@@ -217,5 +217,121 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   `;
     insertAddress.insertAdjacentHTML("beforeend", templateAddress);
+  });
+
+  // ==================   Handle signout =============================
+
+  const btnSignout = document.querySelector(".btn-signout");
+  btnSignout.addEventListener("click", () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userName");
+    window.location.href = "/index.html";
+  });
+
+  // =================================== Get Detail Accout   =================================
+  const user = await callApiMethodGet(
+    "http://localhost:3000/user/info-user",
+    localStorage.getItem("accessToken")
+  );
+  const { email, fullName, numberPhone } = user.data;
+
+  const insertData = document.querySelector(".insert-data");
+
+  const templateInfo = `
+  
+                                                      <div class="">
+                                                        <div class="row text-center">
+                                                            <div class="col-1 col-sm-1 col-md-1"></div>
+                                                            <div class="col-3 col-sm-3 col-md-3">
+                                                                Họ Tên :
+                                                            </div>
+                                                            <div class="col-8 col-sm-8 col-md-8 text-left">
+                                                               ${fullName}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row text-center">
+                                                            <div class="col-1 col-sm-1 col-md-1"></div>
+                                                            <div class="col-3 col-sm-3 col-md-3">
+                                                                Email :
+                                                            </div>
+                                                            <div class="col-8 col-sm-8 col-md-8 text-left">
+                                                               ${email}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row text-center">
+                                                            <div class="col-0 col-sm-0 col-md-1"></div>
+                                                            <div class="col-4 col-sm-4 col-md-3">
+                                                                Số Điện Thoại :
+                                                            </div>
+                                                            <div class="col-8 col-sm-8 col-md-8 text-left">
+                                                               ${numberPhone}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+  `;
+  insertData.insertAdjacentHTML("beforeend", templateInfo);
+
+  // =================================== History Bought    =================================
+
+  const insertProduct = document.querySelector("#insert-product");
+
+  const getHistoryBought = await callApiMethodGet(
+    "http://localhost:3000/bill/",
+    localStorage.getItem("accessToken")
+  );
+  getHistoryBought?.data.forEach(async (item) => {
+    const { price_per_unit, slug_Product, color, quanlity } = item.Billitems[0];
+    //console.log({ price_per_unit, slug_Product, color, quanlity });
+
+    const findProduct = await callApiMethodGet(
+      `http://localhost:3000/product/${slug_Product}`,
+      localStorage.getItem("accessToken")
+    );
+    const { nameLaptop, img } = findProduct.data;
+    const fillterImg = img.filter((item, index) => item.color === color);
+    const imgPath = fillterImg[0].path[0];
+    console.log("img:", imgPath);
+
+    const templateProduct = `
+    
+            <div class="row   border-bottom">
+            <div
+                class="col-2 col-sm-2 col-md-2 col-lg-2 d-flex justify-content-center justify-items-center border-right  border-left">
+
+                <img class="w-50"
+                    src="http://localhost:3000/${imgPath}">
+
+            </div>
+            <div
+                class="col-4 col-sm-4 col-md-4 col-lg-4 text-left  border-right">
+                <p class="font-weight-bold">${nameLaptop}
+                </p>
+
+            </div>
+            <div
+                class="col-2 col-sm-2 col-md-2 col-lg-2 border-right">
+                <div class="text-center">
+                    <p class="font-weight-bold ">
+                        ${color}</p>
+                </div>
+            </div>
+            <div
+                class="col-2 col-sm-2 col-md-2 col-lg-2 border-right">
+                <div class="text-center">
+                    <p class="font-weight-bold ">
+                        ${quanlity}</p>
+                </div>
+            </div>
+            <div
+                class="col-2 col-sm-2 col-md-2 col-lg-2 border-right p-0">
+                <div class="text-center">
+                    <p class="font-weight-bold ">
+                        ${price_per_unit}đ</p>
+                </div>
+            </div>
+        </div>
+    `;
+    insertProduct.insertAdjacentHTML("beforeend", templateProduct);
   });
 });
