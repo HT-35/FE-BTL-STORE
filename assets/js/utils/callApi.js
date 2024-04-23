@@ -89,6 +89,35 @@ const callAPIMethodDelete = async (API, token, requestData) => {
   return await responseData;
 };
 
+const callAPIPost = async (API, token, requestData) => {
+  const response = await fetch(API, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token, // Không cần template literals ở đây
+    },
+    body: JSON.stringify(requestData),
+  });
+  const responseData = await response.json();
+  return responseData; // Không cần await ở đây
+};
+
+const callAPIPostCreateProduct = async (API, token, requestData) => {
+  try {
+    const response = await fetch(API, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+      body: requestData,
+    });
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    throw new Error(`Error calling API: ${error.message}`);
+  }
+};
+
 export {
   callAPIFunction,
   callApiMethodGet,
@@ -98,4 +127,6 @@ export {
   changeQuantityProductInCard,
   callAPIMethodPost,
   callAPIMethodDelete,
+  callAPIPost,
+  callAPIPostCreateProduct,
 };
