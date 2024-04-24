@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const { token, fullName } = res;
         console.log({ token, fullName });
         showProfile(token, fullName);
-        window.location.href = "http://127.0.0.1:5502/admin-dashboad.html";
+        window.location.href = "http://127.0.0.1/admin-dashboad.html";
       } else {
         if ((res.data = "user does not have permission !!!")) {
           const template = `<span class="text-danger">Bạn Không Có Quyền Truy Cập !!!</span>`;
@@ -69,7 +69,7 @@ async function createUser(data) {
   console.log(res);
   if (res.status === true) {
     alert("Tạo Tài Khoản Thành Công !! ");
-    window.location.href = "http://127.0.0.1:5502/login.html";
+    window.location.href = "http://127.0.0.1/login.html";
   } else {
     const notifi = `${res.data.errors[0].path} đã tồn tại`;
     alert(notifi);
