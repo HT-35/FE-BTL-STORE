@@ -25,13 +25,35 @@
         <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
         <!-- Plugins CSS File -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!-- 1 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!--  -->
+
+        <!-- 2 -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+            integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+
+        <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
+        <!--  -->
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/plugins/jquery.countdown.css">
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/skins/skin-demo-3.css">
+        <link rel="stylesheet" href="assets/css/demos/demo-3.css">
     </head>
 
     <body>
@@ -47,7 +69,7 @@
                             </button>
 
                             <a href="index.html" class="logo">
-                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25">
+                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="115px">
                             </a>
                         </div><!-- End .header-left -->
 
@@ -67,29 +89,39 @@
                         </div>
 
                         <div class="header-right">
-
-
-                            <div class="dropdown compare-dropdown">
-                                <a href="./cart.html" class="dropdown-toggle" role="button">
+                            <div class="dropdown cart-dropdown">
+                                <a href="./cart.html" class="dropdown-toggle">
                                     <div class="icon">
                                         <i class="icon-shopping-cart"></i>
+
                                     </div>
                                     <p style="color: #ffffff;">CART</p>
                                 </a>
 
                             </div>
 
-                            <div class="dropdown compare-dropdown">
-                                <a href="./login.html" class="dropdown-toggle" role="button">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-right-to-bracket"></i>
-                                    </div>
-                                    <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
-                                </a>
+                            <div id="insert-info" class="">
+                                <div class="dropdown compare-dropdown">
+                                    <a href="./login.html" class="dropdown-toggle" role="button">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                        </div>
+                                        <p style="color: #ffffff;">SIGN IN / SIGN UP</p>
+                                    </a>
+                                </div>
+
+                                <!--<div class="dropdown compare-dropdown">
+                                                            <a href="./login.html" class="dropdown-toggle" role="button">
+                                                                <div class="icon">
+                        
+                                                                    <i class="fa-regular fa-user"></i>
+                                                                </div>
+                                                                <p style="color: #ffffff;">Huy Trần</p>
+                                                            </a>
+                                                        </div>-->
+
 
                             </div>
-
-
 
                         </div>
                     </div><!-- End .container -->
@@ -130,14 +162,14 @@
             <main class="main">
                 <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                     <div class="container">
-                        <h1 class="page-title">About Us<span>Pages</span></h1>
+                        <h1 class="page-title">Về chúng tôi</h1>
                     </div><!-- End .container -->
                 </div><!-- End .page-header -->
                 <nav aria-label="breadcrumb" class="breadcrumb-nav">
                     <div class="container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+
                             <li class="breadcrumb-item active" aria-current="page">About Us</li>
                         </ol>
                     </div><!-- End .container -->
@@ -145,470 +177,303 @@
 
                 <div class="page-content pb-3">
                     <div class="container">
-                        <div class="row">
+                        <div class="row-header">
                             <div class="col-lg-10 offset-lg-1">
                                 <div class="about-text text-center mt-3">
-                                    <h2 class="title text-center mb-2">Who We Are</h2>
-                                    <!-- End .title text-center mb-2 -->
-                                    <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget
-                                        blandit nunc tortor eu nibh. Suspendisse potenti. Sed egestas, ante et vulputate
-                                        volutpat, uctus metus libero eu augue. Morbi purus libero, faucibus adipiscing,
-                                        commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor.
-                                        Sed
-                                        semper lorem at felis. </p>
-                                    <img src="assets/images/about/about-2/signature.png" alt="signature"
-                                        class="mx-auto mb-5">
+                                    <div class="">
 
-                                    <img src="assets/images/about/about-2/img-1.jpg" alt="image" class="mx-auto mb-6">
-                                </div><!-- End .about-text -->
-                            </div><!-- End .col-lg-10 offset-1 -->
-                        </div><!-- End .row -->
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="icon-box icon-box-sm text-center">
-                                    <span class="icon-box-icon">
-                                        <i class="icon-puzzle-piece"></i>
-                                    </span>
-                                    <div class="icon-box-content">
-                                        <h3 class="icon-box-title">Design Quality</h3><!-- End .icon-box-title -->
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
-                                            metus
-                                            libero <br>eu augue.</p>
-                                    </div><!-- End .icon-box-content -->
-                                </div><!-- End .icon-box -->
-                            </div><!-- End .col-lg-4 col-sm-6 -->
+                                        <h2 class="banner-about-2 mt-3">Khám Phá Sự Xuất Sắc</h2>
+                                        <h2 class="banner-about-2 mt-3">Nơi Chất Lượng Gặp Gỡ
+                                            Sáng
+                                            Tạo </h2>
+                                        <div class="p-banner-about-2">
+                                        </div><!-- End .container -->
+                                        <div class="container " style="width:90%">
+                                            <img src="https://tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-1_1810x700_crop_center.jpg?v=1613700660"
+                                                alt="image" class="img-banner-about-2">
+                                        </div><!-- End .about-text -->
+                                    </div><!-- End .col-lg-10 offset-1 -->
+                                </div><!-- End .row -->
 
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="icon-box icon-box-sm text-center">
-                                    <span class="icon-box-icon">
-                                        <i class="icon-life-ring"></i>
-                                    </span>
-                                    <div class="icon-box-content">
-                                        <h3 class="icon-box-title">Professional Support</h3><!-- End .icon-box-title -->
-                                        <p>Praesent dapibus, neque id cursus faucibus, <br>tortor neque egestas augue,
-                                            eu
-                                            vulputate <br>magna eros eu erat. </p>
-                                    </div><!-- End .icon-box-content -->
-                                </div><!-- End .icon-box -->
-                            </div><!-- End .col-lg-4 col-sm-6 -->
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-sm-4 banner_33">
+                                        <div class="banner_item ">
+                                            <img style="width: 100%"
+                                                class="banner_image blur-up ls-is-cached lazyloaded"
+                                                src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-3_590x700_crop_center.png?v=1613700660"
+                                                alt=""
+                                                data-src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-3_590x700_crop_center.png?v=1613700660"
+                                                data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 1810]">
 
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="icon-box icon-box-sm text-center">
-                                    <span class="icon-box-icon">
-                                        <i class="icon-heart-o"></i>
-                                    </span>
-                                    <div class="icon-box-content">
-                                        <h3 class="icon-box-title">Made With Love</h3><!-- End .icon-box-title -->
-                                        <p>Pellentesque a diam sit amet mi ullamcorper <br>vehicula. Nullam quis massa
-                                            sit
-                                            amet <br>nibh viverra malesuada.</p>
-                                    </div><!-- End .icon-box-content -->
-                                </div><!-- End .icon-box -->
-                            </div><!-- End .col-lg-4 col-sm-6 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 banner_33">
+                                        <div class="banner_item ">
+                                            <img style="width: 100%"
+                                                class="banner_image blur-up ls-is-cached lazyloaded"
+                                                src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-5_590x700_crop_center.png?v=1613700660"
+                                                alt=""
+                                                data-src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-5_590x700_crop_center.png?v=1613700660"
+                                                data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 1810]">
 
-                    <div class="mb-2"></div><!-- End .mb-2 -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 banner_33">
+                                        <div class="banner_item ">
+                                            <img style="width: 100%"
+                                                class="banner_image blur-up ls-is-cached lazyloaded"
+                                                src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-4_590x700_crop_center.png?v=1613700660"
+                                                alt=""
+                                                data-src="//tm-shopify031-computers.myshopify.com/cdn/shop/files/banner-4_590x700_crop_center.png?v=1613700660"
+                                                data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 1810]">
 
-                    <div class="bg-image pt-7 pb-5 pt-md-12 pb-md-9"
-                        style="background-image: url(assets/images/backgrounds/bg-4.jpg)">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6 col-md-3">
-                                    <div class="count-container text-center">
-                                        <div class="count-wrapper text-white">
-                                            <span class="count" data-from="0" data-to="40" data-speed="3000"
-                                                data-refresh-interval="50">0</span>k+
-                                        </div><!-- End .count-wrapper -->
-                                        <h3 class="count-title text-white">Happy Customer</h3><!-- End .count-title -->
-                                    </div><!-- End .count-container -->
-                                </div><!-- End .col-6 col-md-3 -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End .container -->
 
-                                <div class="col-6 col-md-3">
-                                    <div class="count-container text-center">
-                                        <div class="count-wrapper text-white">
-                                            <span class="count" data-from="0" data-to="20" data-speed="3000"
-                                                data-refresh-interval="50">0</span>+
-                                        </div><!-- End .count-wrapper -->
-                                        <h3 class="count-title text-white">Years in Business</h3>
-                                        <!-- End .count-title -->
-                                    </div><!-- End .count-container -->
-                                </div><!-- End .col-6 col-md-3 -->
+                            <div id="shopify-section-index-testimonials"
+                                class="shopify-section section section_homepage index_section_testimonials">
+                                <div class="container">
+                                    <div class="testimonials_caption">
+                                    </div>
 
-                                <div class="col-6 col-md-3">
-                                    <div class="count-container text-center">
-                                        <div class="count-wrapper text-white">
-                                            <span class="count" data-from="0" data-to="95" data-speed="3000"
-                                                data-refresh-interval="50">0</span>%
-                                        </div><!-- End .count-wrapper -->
-                                        <h3 class="count-title text-white">Return Clients</h3><!-- End .count-title -->
-                                    </div><!-- End .count-container -->
-                                </div><!-- End .col-6 col-md-3 -->
+                                </div>
+                            </div>
 
-                                <div class="col-6 col-md-3">
-                                    <div class="count-container text-center">
-                                        <div class="count-wrapper text-white">
-                                            <span class="count" data-from="0" data-to="15" data-speed="3000"
-                                                data-refresh-interval="50">0</span>
-                                        </div><!-- End .count-wrapper -->
-                                        <h3 class="count-title text-white">Awards Won</h3><!-- End .count-title -->
-                                    </div><!-- End .count-container -->
-                                </div><!-- End .col-6 col-md-3 -->
-                            </div><!-- End .row -->
-                        </div><!-- End .container -->
-                    </div><!-- End .bg-image pt-8 pb-8 -->
+                            <div class="mb-2"></div><!-- End .mb-2 -->
 
-                    <div class="bg-light-2 pt-6 pb-7 mb-6">
-                        <div class="container">
-                            <h2 class="title text-center mb-4">Meet Our Team</h2><!-- End .title text-center mb-2 -->
+                            <div class="bg-image pt-7 pb-5 pt-md-12 pb-md-9"
+                                style="background-image: url(assets/images/about/about-2/img-5.jpg); width: 100%;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6 col-md-3">
+                                            <div class="count-container text-center">
+                                                <div class="count-wrapper text-white">
+                                                    <span class="count" data-from="0" data-to="1" data-speed="300"
+                                                        data-refresh-interval="50">0</span>K+
+                                                </div><!-- End .count-wrapper -->
+                                                <h3 class="count-title text-white">Khách hàng vui vẻ</h3>
+                                                <!-- End .count-title -->
+                                            </div><!-- End .count-container -->
+                                        </div><!-- End .col-6 col-md-3 -->
 
-                            <div class="row">
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-1.jpg" alt="member photo">
+                                        <div class="col-6 col-md-3">
+                                            <div class="count-container text-center">
+                                                <div class="count-wrapper text-white">
+                                                    <span class="count" data-from="0" data-to="2" data-speed="3000"
+                                                        data-refresh-interval="50">0</span>+
+                                                </div><!-- End .count-wrapper -->
+                                                <h3 class="count-title text-white">Số năm kinh doanh</h3>
+                                                <!-- End .count-title -->
+                                            </div><!-- End .count-container -->
+                                        </div><!-- End .col-6 col-md-3 -->
 
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Samanta Grey<span>Founder & CEO</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
+                                        <div class="col-6 col-md-3">
+                                            <div class="count-container text-center">
+                                                <div class="count-wrapper text-white">
+                                                    <span class="count" data-from="0" data-to="95" data-speed="3000"
+                                                        data-refresh-interval="50">0</span>%
+                                                </div><!-- End .count-wrapper -->
+                                                <h3 class="count-title text-white">Khách hàng quay lại</h3>
+                                                <!-- End .count-title -->
+                                            </div><!-- End .count-container -->
+                                        </div><!-- End .col-6 col-md-3 -->
 
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-2.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Bruce Sutton<span>Sales & Marketing Manager</span>
-                                            </h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-3.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Janet Joy<span>Product Manager</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-4.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Mark Pocket<span>Product Manager</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-5.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Damion Blue<span>Sales & Marketing Manager</span>
-                                            </h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-6.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Lenard Smith<span>Product Manager</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-7.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">Rachel Green<span>Product Manager</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-
-                                <div class="col-sm-6 col-lg-3">
-                                    <div class="member member-2 text-center">
-                                        <figure class="member-media">
-                                            <img src="assets/images/team/about-2/member-8.jpg" alt="member photo">
-
-                                            <figcaption class="member-overlay">
-                                                <div class="social-icons social-icons-simple">
-                                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                            class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                            class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                            class="icon-instagram"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </figcaption><!-- End .member-overlay -->
-                                        </figure><!-- End .member-media -->
-                                        <div class="member-content">
-                                            <h3 class="member-title">David Doe<span>Product Manager</span></h3>
-                                            <!-- End .member-title -->
-                                        </div><!-- End .member-content -->
-                                    </div><!-- End .member -->
-                                </div><!-- End .col-lg-3 -->
-                            </div><!-- End .row -->
-
-                            <div class="text-center mt-3">
-                                <a href="blog.html" class="btn btn-sm btn-minwidth-lg btn-outline-primary-2">
-                                    <span>LETS START WORK</span>
-                                    <i class="icon-long-arrow-right"></i>
-                                </a>
-                            </div><!-- End .text-center -->
-                        </div><!-- End .container -->
-                    </div><!-- End .bg-light-2 pt-6 pb-6 -->
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1">
-                                <div class="brands-text text-center mx-auto mb-6">
-                                    <h2 class="title">The world's premium design brands in one destination.</h2>
-                                    <!-- End .title -->
-                                    <p>Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet
-                                        vel,
-                                        dapibus id, mattis vel, nis</p>
-                                </div><!-- End .brands-text -->
-                                <div class="brands-display">
-                                    <div class="row justify-content-center">
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/1.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/2.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/3.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/7.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/4.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/5.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/6.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
-
-                                        <div class="col-6 col-sm-4 col-md-3">
-                                            <a href="#" class="brand">
-                                                <img src="assets/images/brands/9.png" alt="Brand Name">
-                                            </a>
-                                        </div><!-- End .col-md-3 -->
+                                        <div class="col-6 col-md-3">
+                                            <div class="count-container text-center">
+                                                <div class="count-wrapper text-white">
+                                                    <span class="count" data-from="0" data-to="15" data-speed="3000"
+                                                        data-refresh-interval="50">0</span>
+                                                </div><!-- End .count-wrapper -->
+                                                <h3 class="count-title text-white">Giải thưởng đã giành được</h3>
+                                                <!-- End .count-title -->
+                                            </div><!-- End .count-container -->
+                                        </div><!-- End .col-6 col-md-3 -->
                                     </div><!-- End .row -->
-                                </div><!-- End .brands-display -->
-                            </div><!-- End .col-lg-10 offset-lg-1 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
-                </div><!-- End .page-content -->
+                                </div><!-- End .container -->
+                            </div><!-- End .bg-image pt-8 pb-8 -->
+
+                            <div class="bg-light-2 pt-6 pb-7 mb-6">
+                                <div class="container">
+                                    <h2 class="title text-center mb-4"> Nhóm Của Chúng Tôi</h2>
+                                    <!-- End .title text-center mb-2 -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="member member-2 text-center">
+                                                <figure class="member-media">
+                                                    <img src="assets/images/team/about-2/member3.jpg"
+                                                        alt="member photo">
+
+                                                    <figcaption class="member-overlay">
+                                                        <div class="social-icons social-icons-simple">
+                                                            <a href="#" class="social-icon" title="Facebook"
+                                                                target="_blank"><i class="icon-facebook-f"></i></a>
+                                                            <a href="#" class="social-icon" title="Twitter"
+                                                                target="_blank"><i class="icon-twitter"></i></a>
+                                                            <a href="#" class="social-icon" title="Instagram"
+                                                                target="_blank"><i class="icon-instagram"></i></a>
+                                                        </div><!-- End .soial-icons -->
+                                                    </figcaption><!-- End .member-overlay -->
+                                                </figure><!-- End .member-media -->
+                                                <div class="member-content">
+                                                    <h3 class="member-title">Quang Huy<span>Team Leader</span></h3>
+                                                    <!-- End .member-title -->
+                                                </div><!-- End .member-content -->
+                                            </div><!-- End .member -->
+                                        </div><!-- End .col-lg-3 -->
+
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="member member-2 text-center">
+                                                <figure class="member-media">
+                                                    <img src="assets/images/team/about-2/member1.jpg"
+                                                        alt="member photo">
+
+                                                    <figcaption class="member-overlay">
+                                                        <div class="social-icons social-icons-simple">
+                                                            <a href="#" class="social-icon" title="Facebook"
+                                                                target="_blank"><i class="icon-facebook-f"></i></a>
+                                                            <a href="#" class="social-icon" title="Twitter"
+                                                                target="_blank"><i class="icon-twitter"></i></a>
+                                                            <a href="#" class="social-icon" title="Instagram"
+                                                                target="_blank"><i class="icon-instagram"></i></a>
+                                                        </div><!-- End .soial-icons -->
+                                                    </figcaption><!-- End .member-overlay -->
+                                                </figure><!-- End .member-media -->
+                                                <div class="member-content">
+                                                    <h3 class="member-title">Thanh Thảo<span> Team Member</span>
+                                                    </h3>
+                                                    <!-- End .member-title -->
+                                                </div><!-- End .member-content -->
+                                            </div><!-- End .member -->
+                                        </div><!-- End .col-lg-3 -->
+
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="member member-2 text-center">
+                                                <figure class="member-media">
+                                                    <img src="assets/images/team/about-2/member2.jpg"
+                                                        alt="member photo">
+
+                                                    <figcaption class="member-overlay">
+                                                        <div class="social-icons social-icons-simple">
+                                                            <a href="#" class="social-icon" title="Facebook"
+                                                                target="_blank"><i class="icon-facebook-f"></i></a>
+                                                            <a href="#" class="social-icon" title="Twitter"
+                                                                target="_blank"><i class="icon-twitter"></i></a>
+                                                            <a href="#" class="social-icon" title="Instagram"
+                                                                target="_blank"><i class="icon-instagram"></i></a>
+                                                        </div><!-- End .soial-icons -->
+                                                    </figcaption><!-- End .member-overlay -->
+                                                </figure><!-- End .member-media -->
+                                                <div class="member-content">
+                                                    <h3 class="member-title">Thanh Tú<span>Team Member</span></h3>
+                                                    <!-- End .member-title -->
+                                                </div><!-- End .member-content -->
+                                            </div><!-- End .member -->
+                                        </div><!-- End .col-lg-3 -->
+
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="member member-2 text-center">
+                                                <figure class="member-media">
+                                                    <img src="assets/images/team/about-2/member4.jpg"
+                                                        alt="member photo">
+
+                                                    <figcaption class="member-overlay">
+                                                        <div class="social-icons social-icons-simple">
+                                                            <a href="#" class="social-icon" title="Facebook"
+                                                                target="_blank"><i class="icon-facebook-f"></i></a>
+                                                            <a href="#" class="social-icon" title="Twitter"
+                                                                target="_blank"><i class="icon-twitter"></i></a>
+                                                            <a href="#" class="social-icon" title="Instagram"
+                                                                target="_blank"><i class="icon-instagram"></i></a>
+                                                        </div><!-- End .soial-icons -->
+                                                    </figcaption><!-- End .member-overlay -->
+                                                </figure><!-- End .member-media -->
+                                                <div class="member-content">
+                                                    <h3 class="member-title">Thanh Thi<span>Team Member</span></h3>
+                                                    <!-- End .member-title -->
+                                                </div><!-- End .member-content -->
+                                            </div><!-- End .member -->
+                                        </div><!-- End .col-lg-3 -->
+
+                                    </div><!-- End .container -->
+                                </div><!-- End .bg-light-2 pt-6 pb-6 -->
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-10 offset-lg-1">
+                                            <div class="brands-text text-center mx-auto mb-6">
+                                                <h2 class="title text-danger">Các thương hiệu máy tính hàng đầu thế giới
+                                                </h2>
+                                                <!-- End .title -->
+                                                <h5>Chúng tôi đã kết nối với các thương hiệu lớn để cung
+                                                    cấp các sản
+                                                    phẩm
+                                                    chất lượng dịch vụ hiện đại.
+                                                </h5>
+                                            </div><!-- End .brands-text -->
+                                            <div class="brands-display">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/dell-old-logo.jpg"
+                                                                alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/AsusTek-black-logo.png"
+                                                                alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/msi.jpg" alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/hp.jpg" alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/lg.jpg" alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/apple.jpg" alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/Microsoft_logo_(2012).jpg"
+                                                                alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+
+                                                    <div class="col-6 col-sm-4 col-md-3">
+                                                        <a href="#" class="brand">
+                                                            <img src="assets/images/brands/acer.jpg" alt="Brand Name">
+                                                        </a>
+                                                    </div><!-- End .col-md-3 -->
+                                                </div><!-- End .row -->
+                                            </div><!-- End .brands-display -->
+                                        </div><!-- End .col-lg-10 offset-lg-1 -->
+                                    </div><!-- End .row -->
+                                </div><!-- End .container -->
+                            </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-            <footer class="footer">
-                <div class="footer-middle">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget widget-about">
-                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105"
-                                        height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu
-                                        vulputate
-                                        magna eros eu erat. </p>
 
-                                    <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i
-                                                class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i
-                                                class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i
-                                                class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i
-                                                class="icon-pinterest"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .widget about-widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-middle -->
-
-                <div class="footer-bottom">
-                    <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p>
-                        <!-- End .footer-copyright -->
-                        <figure class="footer-payments">
-                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
-                        </figure><!-- End .footer-payments -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-bottom -->
-            </footer><!-- End .footer -->
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
@@ -711,7 +576,8 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/jquery.countTo.js"></script>
         <!-- Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <!-- JS -->
+        <script type="module" src="./assets/js/FE/about.FE.js"></script>
     </body>
 
 

@@ -63,7 +63,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     localStorage.getItem("accessToken")
   );
 
-  const quantity = getProductDetailInCard.data[0].quantity;
+  let quantity = 1;
+
+  if (getProductDetailInCard.data) {
+    quantity = getProductDetailInCard?.data[0].quantity;
+  }
 
   const totalPrice = Number(quantity) * Number(newPrice);
   //console.log(getProductDetailInCard);
@@ -107,10 +111,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // === === === === === === === === === Lấy Địa Chỉ Giao Hàng === === === === === === === === ===
   const insertAddress = document.querySelector("#insert-address");
   const listAddress = await callApiMethodGet(apiGetListAddress, token);
+  console.log("listAddress:", listAddress);
 
-  listAddress?.data.forEach((item, index) => {
-    const { numberPhone, id_User, id, email_address, address } = item;
-    const templateAdress = `
+  if (listAddress.data.length > 0) {
+    console.log("ok");
+    listAddress?.data.forEach((item, index) => {
+      const { numberPhone, id_User, id, email_address, address } = item;
+      const templateAdress = `
               <button type="button" class="dropdown-item address" id='id-address'  data-id='${id}'>
                 <div class="card-body">
                     <h3 class="card-title mb-1">Địa Chỉ Giao Hàng ${
@@ -138,23 +145,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             </button>
   `;
 
-    insertAddress.insertAdjacentHTML("beforeend", templateAdress);
-  });
+      insertAddress.insertAdjacentHTML("beforeend", templateAdress);
+    });
 
-  // ====================================== add default address ======================================
+    // ====================================== add default address ======================================
 
-  //console.log(listAddress.data[0]);
+    //console.log(listAddress.data[0]);
 
-  const { numberPhone, id_User, id, email_address } = listAddress.data[0];
-  const addressShip = listAddress.data[0].address;
+    const { numberPhone, id_User, id, email_address } = listAddress?.data[0];
+    const addressShip = listAddress.data[0].address;
 
-  const templateAdressDefault = `
+    const templateAdressDefault = `
        <div class="card-body  p-0" id='id-address' data-id='${id}'>
                                                     <h3 class="card-title mb-1">Địa Chỉ Giao Hàng </h3>
                                                     <div class="row mb-1">
                                                         <div class="col-4 col-sm-4 col-md-4">Số Điện Thoại
                                                         </div>
-                                                        <div class="col-8 col-sm-8 col-md-8">${numberPhone}
+                                                        <div class="col-8 col-sm-8 col-md-8">0${numberPhone}
                                                         </div>
                                                     </div>
                                                     <div class="row mb-1">
@@ -173,15 +180,119 @@ document.addEventListener("DOMContentLoaded", async () => {
                                                 </div>
   `;
 
-  addressInsert.insertAdjacentHTML("beforeend", templateAdressDefault);
+    addressInsert.insertAdjacentHTML("beforeend", templateAdressDefault);
 
-  // ==================    add Create Address =============
-  const templateAddAdress = `
-       <button class="dropdown-item">
-            <p class='text-danger'>Thêm Vị Trí Giao Hàng </p>
-       </button>
+    // ==================    add Create Address =============
+    const templateAddAdress = `
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Thêm Địa Chỉ Giao Hàng
+            </button>
     `;
-  insertAddress.insertAdjacentHTML("beforeend", templateAddAdress);
+    insertAddress.insertAdjacentHTML("beforeend", templateAddAdress);
+  } else {
+    const templateAddAdress = `
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Thêm Địa Chỉ Giao Hàng
+            </button>
+    `;
+    insertAddress.insertAdjacentHTML("beforeend", templateAddAdress);
+  }
+
+  // ==================    handle add  Address =============
+  //  === === === === === === === === === ===  Call API Create Address    === === === === === === === === === ===
+
+  var emailInput = document.getElementById("email-Rigister");
+  var numberPhoneInput = document.getElementById("number-phone-Rigister");
+  var addressInput = document.getElementById("register-address");
+
+  addressInput.addEventListener("change", () => {
+    saveChangesBtn.removeAttribute("disabled");
+  });
+
+  // Lấy thẻ nút "Save changes"
+  var saveChangesBtn = document.getElementById("saveChangesBtn");
+  var modal = document.getElementById("exampleModal");
+
+  // Gán sự kiện click cho nút "Save changes"
+  saveChangesBtn.addEventListener("click", async function () {
+    // Kiểm tra xem các trường có được nhập đủ không
+    var emailValue = emailInput.value;
+    var numberPhoneValue = numberPhoneInput.value;
+    var addressValue = addressInput.value;
+
+    if (!emailValue || !numberPhoneValue || !addressValue) {
+      alert("Vui lòng nhập đầy đủ thông tin!");
+      return; // Dừng việc thực hiện hàm tiếp theo nếu có trường không được nhập đủ
+    }
+
+    // Kiểm tra định dạng email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailValue)) {
+      alert("Email không hợp lệ!");
+      return; // Dừng việc thực hiện hàm tiếp theo nếu email không hợp lệ
+    }
+
+    // Kiểm tra định dạng số điện thoại (ví dụ: 10 chữ số)
+    var phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(numberPhoneValue)) {
+      alert("Số điện thoại không hợp lệ!");
+      return; // Dừng việc thực hiện hàm tiếp theo nếu số điện thoại không hợp lệ
+    }
+
+    const address = {
+      email_address: emailValue,
+      numberPhone: numberPhoneValue,
+      address: addressValue,
+    };
+
+    const token = localStorage.getItem("accessToken");
+    //console.log(token);
+
+    const createAddress = await callAPIMethodPost(
+      "http://localhost:3000/delivery-address",
+      localStorage.getItem("accessToken"),
+      address
+    );
+    console.log(createAddress);
+
+    // === === === === === === === === === === ===  Clear Modal  === === === === === === === === === === ===
+
+    if (!createAddress.status) {
+      const errorEmail = document.querySelector("#error-email");
+      if (createAddress.data == "address must be unique") {
+        errorEmail.innerText = "* địa chỉ giao hàng đã tồn tại";
+        saveChangesBtn.setAttribute("disabled", "");
+        return;
+      } else {
+        errorEmail.innerText = `${createAddress.data}`;
+        saveChangesBtn.setAttribute("disabled", "");
+        //alert(createAddress.data);
+        return;
+      }
+    } else {
+      saveChangesBtn.setAttribute("data-dismiss", "modal");
+      modal.setAttribute("aria-hidden", "true");
+
+      modal.style.display = "none";
+      modal.classList.remove("show"); // Loại bỏ lớp "show"
+      modal.classList.add("fade"); // Thêm lớp "fade" để modal biến mất một cách mượt mà
+      document.body.classList.remove("modal-open"); // Loại bỏ lớp "modal-open" từ thẻ body
+      var backdrop = document.querySelectorAll(".modal-backdrop"); // Tìm thẻ backdrop
+
+      backdrop.forEach((backdrop) => {
+        backdrop.parentNode.removeChild(backdrop); // Loại bỏ backdrop
+      });
+
+      // Xóa thông tin đã nhập
+
+      numberPhoneInput.value = "";
+      addressInput.value = "";
+      setTimeout(() => {
+        saveChangesBtn.removeAttribute("data-dismiss", "modal");
+      }, 1000);
+      window.location.href = window.location.href;
+    }
+  });
 
   //====================    Get Selection address    =========
   const address = document.querySelectorAll(".address");

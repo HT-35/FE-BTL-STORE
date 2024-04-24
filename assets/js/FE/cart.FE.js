@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     //console.log(item);
 
     const filterPathImg = img.filter((item) => item.color === color);
+    console.log("filterPathImg:", filterPathImg);
+
     const pathImg = `http://localhost:3000/${filterPathImg[0].path[0]}`;
 
     let total = 0;

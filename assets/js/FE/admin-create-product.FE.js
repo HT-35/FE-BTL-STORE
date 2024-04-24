@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const createProduct = await callAPIPostCreateProduct(
         form.action, // Sử dụng action của form làm URL
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsTmFtZSI6Ikh1eSIsImVtYWlsIjoiaHV5ZmEzNTIwMDJAZ21haWwuY29tIiwibnVtYmVyUGhvbmUiOiIwMzQzMTI4NzMzIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzEzODQ2ODg4fQ.VF2wyzA-IG0DqoRcHX_iPDnqXxim7crRuikgX_91Cik",
-        formValues
+        formData
       );
       console.log(createProduct);
       // Log hoặc xử lý dữ liệu theo nhu cầu của bạn
@@ -55,27 +55,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // =================================================================================================
 
-  document
-    .getElementById("uploadForm")
-    .addEventListener("submit", async function (e) {
-      e.preventDefault(); // Ngăn chặn chuyển hướng mặc định của form
+  //document
+  //  .getElementById("uploadForm")
+  //  .addEventListener("submit", async function (e) {
+  //    e.preventDefault(); // Ngăn chặn chuyển hướng mặc định của form
 
-      const formData = new FormData(this); // Lấy dữ liệu từ form
+  //    console.log("ok");
 
-      try {
-        const response = await fetch(this.action, {
-          method: "POST",
-          body: formData,
-        });
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Error submitting form");
-        }
+  //    const formData = new FormData(this); // Lấy dữ liệu từ form
 
-        const data = await response.json();
-        console.log("Server response:", data);
-      } catch (error) {
-        console.error("Error:", error.message);
-      }
-    });
+  //    try {
+  //      const response = await fetch(this.action, {
+  //        method: "POST",
+  //        body: formData,
+  //      });
+  //      console.log(response);
+  //      if (!response.ok) {
+  //        throw new Error("Error submitting form");
+  //      }
+
+  //      const data = await response.json();
+  //      console.log("Server response:", data);
+  //    } catch (error) {
+  //      console.error("Error:", error.message);
+  //    }
+  //  });
 });

@@ -58,7 +58,7 @@
                     <div class="container">
                         <div class="header-left">
                             <a href="#" class="logo">
-                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25">
+                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="115px">
                             </a>
                         </div><!-- End .header-left -->
 
@@ -120,7 +120,7 @@
                         <div id="colorsInputs">
                             <div class="colorInput mb-2">
                                 <input type="text" class="form-control" name="colors[0][color]" placeholder="Color"
-                                    value="Red">
+                                    value="Yellow">
                                 <input type="number" class="form-control" name="colors[0][price]" placeholder="Price"
                                     value="1000">
                             </div>
@@ -133,16 +133,16 @@
                         <label>Images</label>
                         <div id="imagesInputs">
                             <div class="imgInput mb-2">
-                                <input type="text" class="form-control" name="img[0][color]" placeholder="Color"
-                                    value="Red">
-                                <input type="file" class="form-control-file" id="input-file" name="images"
-                                    accept="image/*" multiple>
-                                <!--<input type="file" class="form-control-file" name="img[0][color][0]" accept="image/*"
-                                    multiple>-->
+                                <input type="text" value="Yellow" class="form-control" name="img[0][color]"
+                                    placeholder="Color">
+                                <input type="file" class="form-control-file" name="img[0][color][0]" accept="image/*"
+                                    multiple>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="addImgInput()">Add Image</button>
                         </div>
+                        <button type="button" class="btn btn-primary" onclick="addImgInput()">Add Image</button>
                     </div>
+                    <!-- end Input cho trường dữ liệu img -->
+
                     <div class="form-group">
                         <label>Slug</label>
                         <input type="text" class="form-control" name="slug" placeholder="Slug" value="laptop-abc">
@@ -186,7 +186,7 @@
                             name="Specifications.ramMemory_hardDrive.MaximumRamSupport"
                             placeholder="Maximum RAM Support" value="16GB">
                         <input type="text" class="form-control" name="Specifications.ramMemory_hardDrive.HardDrive"
-                            placeholder="Hard Drive" value="512GB SSD">
+                            placeholder="Hard Drive" value="512GB">
                         <!-- Add more ramMemory_hardDrive fields if needed -->
 
                         <!-- Screen -->
@@ -263,12 +263,12 @@
 
 
 
-            <form id="uploadForm" action="http://localhost:3000/product/create" method="post"
+            <!--<form id="uploadForm" action="http://localhost:3000/product/create" method="post"
                 enctype="multipart/form-data">
                 <input type="file" name="img[0][color][0]" id="fileInput" multiple />
                 <input type="file" name="img[1][color][0]" id="fileInput" multiple />
                 <button type="submit">Submit</button>
-            </form>
+            </form>-->
 
         </div><!-- End .page-wrapper -->
 

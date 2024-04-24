@@ -47,7 +47,7 @@
                             </button>
 
                             <a href="index.html" class="logo">
-                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="105" height="25">
+                                <img src="assets/images/demos/demo-3/logo.png" alt="Molla Logo" width="115px">
                             </a>
                         </div><!-- End .header-left -->
 
@@ -537,6 +537,57 @@
             </div><!-- End .mobile-menu-wrapper -->
         </div><!-- End .mobile-menu-container -->
 
+        <div class="">
+            <!-- Button trigger modal -->
+            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Thêm Địa Chỉ Giao Hàng
+            </button>-->
+
+            <!-- Modal -->
+            <!-- Khai báo modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Địa Chỉ Giao Hàng</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-3">
+                            <form id="register-form">
+                                <div class="form-group">
+                                    <label for="email-Rigister">Email</label>
+                                    <input type="email" class="form-control" id="email-Rigister" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="number-phone-Rigister">Số
+                                        Điện Thoại</label>
+                                    <input type="tel" class="form-control" id="number-phone-Rigister" name="numberphone"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-address">Địa Chỉ
+                                        Giao Hàng</label>
+                                    <input type="text" class="form-control" id="register-address" name="address"
+                                        required>
+                                    <p id="error-email" class="text-danger">
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- Chú ý: data-dismiss="modal" đã được loại bỏ từ nút "Save changes" -->
+                            <button type="button" class="btn btn-primary" id="saveChangesBtn">Thêm Địa Chỉ Giao
+                                Hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Plugins JS File -->
